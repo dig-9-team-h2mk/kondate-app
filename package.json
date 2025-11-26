@@ -1,0 +1,24 @@
+{
+  "name": "kondate-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dig-9-team-h2mk/kondate-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dig-9-team-h2mk/kondate-app/issues"
+  },
+  "homepage": "https://github.com/dig-9-team-h2mk/kondate-app#readme",
+  "dependencies": {
+    "express": "^5.1.0",
+    "node": "^20.19.6"
+  }
+}
