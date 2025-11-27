@@ -1,3 +1,5 @@
+const dotenv = require("dotenv");
+dotenv.config();
 // Update with your config settings.
 
 /**
@@ -7,8 +9,8 @@ module.exports = {
   development: {
     client: "pg",
     connection: {
-      user: process.env.POSTGRES_USER || "postgres",
-      database: process.env.POSTGRES_DB || "kondate",
+      user: process.env.POSTGRES_USER,
+      database: process.env.POSTGRES_DB,
     },
     migrations: {
       directory: "./data/migrations",
