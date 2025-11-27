@@ -2,19 +2,21 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+console.log(import.meta.env.VITE_FIREBASE_API_KEY);
 const firebaseConfig = {
-  apiKey: "AIzaSyB3vczNQy7NAMZbViM-1ZPS6f0mkFTDwY0",
-  authDomain: "kondate-app-login.firebaseapp.com",
-  projectId: "kondate-app-login",
-  storageBucket: "kondate-app-login.firebasestorage.app",
-  messagingSenderId: "244122667006",
-  appId: "1:244122667006:web:162ed0aaa49b270c31a2af",
-  measurementId: "G-EZLS6KXG71",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  mesurementId: import.meta.env.VITE_MEASUREMENT_ID,
 };
 
 // Initialize Firebase
