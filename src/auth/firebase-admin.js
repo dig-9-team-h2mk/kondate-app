@@ -1,4 +1,4 @@
-import admin from "firebase-admin";
+const admin = require("firebase-admin");
 
 const serviceAccount = {
   type: "service_account",
@@ -20,4 +20,4 @@ try {
   throw error;
 }
 
-export const auth = admin.auth();
+module.exports = admin.auth();
