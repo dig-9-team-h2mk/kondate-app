@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/server.js"
+    "start": "node src/server.js",
+    "build": "cd front && npm install && npm run build && rm -rf ../public && cp -r dist ../public",
+    "db:migrate": "npx knex migrate:latest"
   },
   "repository": {
     "type": "git",
@@ -18,8 +20,11 @@
   },
   "homepage": "https://github.com/dig-9-team-h2mk/kondate-app#readme",
   "dependencies": {
+    "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "firebase-admin": "^13.6.0",
-    "node": "^20.19.6"
+    "knex": "^3.1.0",
+    "node": "^20.19.6",
+    "pg": "^8.16.3"
   }
 }
