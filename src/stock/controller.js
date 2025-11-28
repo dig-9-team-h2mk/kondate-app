@@ -1,21 +1,10 @@
-const auth = require("../auth/firebase-admin");
-function createStockController() {
-  const post = (req, res) => {
-    try {
-      const token = req.headers.authorization;
-      if (!token) {
-        res.status(401).end();
-        return;
-      }
-      const decodedToken = auth.verifyIdToken(token.split(" ")[1]);
-      req.user = decodedToken;
-    } catch (error) {
-      res.status(401).send(error);
-      return;
-    }
+function createStockController(service) {
+  const post = async (req, res) => {
     const { food_name, quantity } = req.body;
-    console.log(food_name, quantity);
-    res.end();
+    const userId = "sampleUser";
+
+    await service.create(userId, food_name, quantity);
+    res.status(204).end();
   };
   return { post };
 }
