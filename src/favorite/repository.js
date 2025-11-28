@@ -1,4 +1,4 @@
-function createFavoriteRepository(knex) {
+function createFavoriteRepository(knex, table = 'favorite_food') {
   const insert = async (userId, favoriteFood) => {
     await knex(table).insert({
       user_id: userId,
@@ -7,3 +7,5 @@ function createFavoriteRepository(knex) {
   };
   return { insert };
 }
+
+module.exports = { createFavoriteRepository };
