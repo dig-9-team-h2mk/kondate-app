@@ -15,7 +15,19 @@ function createFavoriteRepository(knex, table = 'favorite_food') {
       .select('*');
     return favoriteFoodData;
   };
-  return { insert, select };
+
+  const update = async (userId, favoriteFoodId, updateFavoriteFood) => {
+    const updatedFavoriteFood = await knex(table)
+      .where({
+        user_id: userId,
+        id: favoriteFoodId,
+      })
+      .update({ favorite_food: updateFavoriteFood })
+      .returning('*');
+
+    return updatedFavoriteFood;
+  };
+  return { insert, select, update };
 }
 
 module.exports = { createFavoriteRepository };
