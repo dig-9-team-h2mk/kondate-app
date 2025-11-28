@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/server.js",
-    "build": "cd front && npm install && npm run build && rm -rf ../public && cp -r dist ../public",
+    "build": "npm i && npm run db:migrate && cd client && npm install && npm run build && rm -rf ../public && cp -r dist ../public",
     "db:migrate": "npx knex migrate:latest"
   },
   "repository": {
