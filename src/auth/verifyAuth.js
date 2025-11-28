@@ -14,7 +14,7 @@ module.exports = async (req, res, next) => {
       throw new Error("Authorization JWT format is invalid.");
     const token = tokenItems[1];
 
-    const decodedToken = await auth().verifyIdToken(token);
+    const decodedToken = await auth.verifyIdToken(token);
     req.user = decodedToken;
     next();
   } catch (error) {
