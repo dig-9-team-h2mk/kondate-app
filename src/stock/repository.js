@@ -1,10 +1,12 @@
 function createStockRepository(knex) {
-  const insert = async (userId, stockFood, quantity) => {
-    await knex(table).insert({
+  const insert = async (userId, foodName, quantity) => {
+    return await knex("stock_food").insert({
       user_id: userId,
-      stock_food: stockFood,
+      food_name: foodName,
       quantity: quantity,
     });
   };
   return { insert };
 }
+
+module.exports = { createStockRepository };
