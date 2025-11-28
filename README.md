@@ -68,6 +68,6 @@
 # Wiki リンク（プロジェクトルール等）
 
 - [ブランチ戦略・プルリクエストのルール](https://github.com/dig-9-team-h2mk/kondate-app/wiki/Branch%E6%88%A6%E7%95%A5)
-- [コミットルール]()
-- [ビルド方法]()
 - [DB スキーマ](https://github.com/dig-9-team-h2mk/kondate-app/wiki/kondateDB%E3%82%B9%E3%82%AD%E3%83%BC%E3%83%9E)
+- [コミットルール](https://github.com/dig-9-team-h2mk/kondate-app/wiki/Branch%E6%88%A6%E7%95%A5#%E3%82%B3%E3%83%9F%E3%83%83%E3%83%88%E3%81%A7%E6%B0%97%E3%82%92%E3%81%A4%E3%81%91%E3%82%8B%E3%81%93%E3%81%A8)
+- [ビルド方法](https://github.com/dig-9-team-h2mk/kondate-app/wiki/%E3%83%93%E3%83%AB%E3%83%89%E6%96%B9%E6%B3%95)
