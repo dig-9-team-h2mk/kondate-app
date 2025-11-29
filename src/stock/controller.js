@@ -1,10 +1,10 @@
 function createStockController(service) {
   const post = async (req, res) => {
-    const { food_name, quantity } = req.body;
+    const { food_name: foodName, quantity } = req.body;
     const userId = "sampleUser";
 
-    await service.create(userId, food_name, quantity);
-    res.status(204).end();
+    const result = await service.checkDuplication(userId, foodName, quantity);
+    res.status(200).send(result);
   };
   return { post };
 }
