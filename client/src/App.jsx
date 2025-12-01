@@ -6,6 +6,7 @@ import { Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
+import Top from "./components/Top";
 
 function App() {
   // ログインしているユーザーの情報を管理するステート
@@ -56,6 +57,7 @@ function App() {
               <Button variant="secondary" onClick={handleLogout}>
                 ログアウト
               </Button>
+              <Top />
             </div>
           ) : (
             // ログインしていない場合の表示
