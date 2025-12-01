@@ -1,4 +1,4 @@
-function createStockController(service) {
+function createFavoriteController(service) {
   const post = async (req, res) => {
     const { favorite_food: favoirte_food } = req.body;
     const userId = "to-kun";
@@ -8,3 +8,4 @@ function createStockController(service) {
   };
   return { post };
 }
+module.exports = { createFavoriteController };
