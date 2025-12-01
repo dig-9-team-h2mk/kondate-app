@@ -1,4 +1,4 @@
-function createFavoriteRepository(knex, table = 'favorite_food') {
+function createFavoriteRepository(knex, table = "favorite_food") {
   const insert = async (userId, favoriteFood) => {
     await knex(table).insert({
       user_id: userId,
@@ -6,13 +6,13 @@ function createFavoriteRepository(knex, table = 'favorite_food') {
     });
   };
 
-  const select = async (userId, favoriteFood) => {
+  const getByFavoriteFood = async (userId, favoriteFood) => {
     const favoriteFoodData = await knex(table)
       .where({
         user_id: userId,
         favorite_food: favoriteFood,
       })
-      .select('*');
+      .select("*");
     return favoriteFoodData;
   };
 
@@ -23,11 +23,11 @@ function createFavoriteRepository(knex, table = 'favorite_food') {
         id: favoriteFoodId,
       })
       .update({ favorite_food: updateFavoriteFood })
-      .returning('*');
+      .returning("*");
 
     return updatedFavoriteFood;
   };
-  return { insert, select, update };
+  return { insert, getByFavoriteFood, update };
 }
 
 module.exports = { createFavoriteRepository };

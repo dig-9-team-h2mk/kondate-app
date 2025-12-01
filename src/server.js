@@ -10,6 +10,9 @@ const app = express();
 const { createStockController } = require("./stock/controller");
 const { createStockRepository } = require("./stock/repository");
 const { createStockService } = require("./stock/service");
+const { insertFavoriteService } = require("./favorite/service");
+const { createFavoriteRepository } = require("./favorite/repository");
+const { createFavoriteController } = require("./favorite/controller");
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
@@ -30,9 +33,19 @@ function initStockFood(knex) {
   return controller;
 }
 
+function initFavoriteFood(knex) {
+  const favoriteRepository = createFavoriteRepository(knex);
+  const favoriteService = insertFavoriteService(favoriteRepository);
+  const favoriteController = createFavoriteController(favoriteService);
+  return favoriteController;
+}
+
 const stockController = initStockFood(knex);
+const favoriteController = initFavoriteFood(knex);
 
 app.post("/api/stock", stockController.post);
+
+app.post("/api/favorites", favoriteController.post);
 
 app.listen(PORT, () => {
   console.log(`サーバー立ち上がりました ${PORT}`);
