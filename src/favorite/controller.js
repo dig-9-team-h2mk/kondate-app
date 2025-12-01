@@ -3,7 +3,7 @@ function createFavoriteController(service) {
     const { favorite_food: favoirte_food } = req.body;
     const userId = "to-kun";
 
-    const result = await service.checkDupulication(userId, favoirte_food);
+    const result = await service.checkDuplication(userId, favoirte_food);
     res.status(200).send(result);
   };
   return { post };

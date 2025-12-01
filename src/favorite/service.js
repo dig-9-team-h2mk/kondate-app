@@ -1,11 +1,11 @@
-function insertFavoriteService(service) {
-  const insert = async (userId, favorite_food) => {
-    return await Repositori.insert(userId, favorite_food);
+function insertFavoriteService(repository) {
+  const create = async (userId, favorite_food) => {
+    return await repository.insert(userId, favorite_food);
   };
   const checkDuplication = async (userId, favorite_food) => {
-    const result = await Repositori.getByFavoriteFood(useId, favoirte_food);
+    const result = await repository.getByFavoriteFood(userId, favorite_food);
     if (result.length === 0) {
-      await insert(userId, favorite_food);
+      await create(userId, favorite_food);
       return {
         message: "登録完了",
       };
@@ -16,9 +16,7 @@ function insertFavoriteService(service) {
       };
     }
   };
-  return { insert, checkDuplication };
+  return { create, checkDuplication };
 }
 
-module.exports = {
-  insertFavoriteService,
-};
+module.exports = { insertFavoriteService };
