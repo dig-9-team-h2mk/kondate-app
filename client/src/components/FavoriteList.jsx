@@ -6,11 +6,16 @@ const favoriteList = [
 ];
 function FavoriteList() {
   return (
-    <>
+    <div className="favoriteList">
+      <div>好きな食べ物</div>
       {favoriteList.map((el) => {
-        return <div key={el.id}>{el.favorite_food}</div>;
+        return (
+          <div className="favorite" key={el.id}>
+            {el.favorite_food}
+          </div>
+        );
       })}
-    </>
+    </div>
   );
 }
 

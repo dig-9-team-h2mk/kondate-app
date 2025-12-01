@@ -8,11 +8,12 @@ const stockList = [
 function StockList() {
   return (
     <>
+      <div>冷蔵庫の食べ物</div>
       {stockList.map((el) => {
         return (
           <div className="stockList" key={el.id}>
-            <p className="stockListValue">{el.food_name}</p>
-            <p className="stockListValue">{el.quantity}</p>
+            <div className="stockListValue">{el.food_name}</div>
+            <div className="stockListValue">{el.quantity}</div>
             <button className="deleteButton">×</button>
           </div>
         );

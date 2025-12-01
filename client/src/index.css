@@ -73,13 +73,26 @@ button:focus-visible {
   border: 0.5px solid black;
   justify-content: center;
   align-items: center;
-  text-align: center;
+  height: 50px;
 }
 
 .stockListValue {
-  margin-right: 10px;
+  margin-left: 20px;
 }
 
 .deleteButton {
-  justify-content: flex-end;
+  margin-left: auto;
+}
+
+.favoriteList {
+  margin-top: 5px;
+}
+
+.favorite {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  border: 0.5px solid black;
+  height: 40px;
 }
