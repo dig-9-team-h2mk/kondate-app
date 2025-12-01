@@ -13,6 +13,7 @@ function StockList() {
           <div className="stockList" key={el.id}>
             <p className="stockListValue">{el.food_name}</p>
             <p className="stockListValue">{el.quantity}</p>
+            <button className="deleteButton">×</button>
           </div>
         );
       })}

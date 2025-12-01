@@ -69,8 +69,17 @@ button:focus-visible {
 
 .stockList {
   display: flex;
+  margin: 0;
+  border: 0.5px solid black;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .stockListValue {
   margin-right: 10px;
+}
+
+.deleteButton {
+  justify-content: flex-end;
 }
