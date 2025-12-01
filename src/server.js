@@ -35,8 +35,8 @@ function initStockFood(knex) {
 
 function initFavoriteFood(knex) {
   const favoriteRepository = createFavoriteRepository(knex);
-  const favoriteServer = insertFavoriteService(favoriteRepository);
-  const favoriteController = createFavoriteController(favoriteServer);
+  const favoriteService = insertFavoriteService(favoriteRepository);
+  const favoriteController = createFavoriteController(favoriteService);
   return favoriteController;
 }
 
