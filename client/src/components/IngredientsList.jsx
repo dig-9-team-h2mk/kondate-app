@@ -1,4 +1,15 @@
-function IngredientsList({ items }) {
+import { useState } from "react";
+import { useEffect } from "react";
+
+function IngredientsList({ loginUserId }) {
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    fetch(`/api/stock/${loginUserId}`)
+      .then((res) => res.json())
+      .then((data) => setItems(data));
+  });
+
   return (
     <ul style={{ listStyle: "none", paddingLeft: "0" }}>
       {items.map((item, index) => (
