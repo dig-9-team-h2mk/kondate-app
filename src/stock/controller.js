@@ -6,7 +6,13 @@ function createStockController(service) {
     const result = await service.checkDuplication(userId, foodName, quantity);
     res.status(200).send(result);
   };
-  return { post };
+
+  const get = async (req, res) => {
+    const userId = "sampleUser";
+    const result = await service.getStockFood(userId);
+    res.status(200).send(result);
+  };
+  return { post, get };
 }
 
 module.exports = { createStockController };

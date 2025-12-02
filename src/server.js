@@ -47,6 +47,8 @@ app.post("/api/stock", stockController.post);
 
 app.post("/api/favorites", favoriteController.post);
 
+app.get("/api/stock", stockController.get);
+
 app.listen(PORT, () => {
   console.log(`サーバー立ち上がりました ${PORT}`);
 });
