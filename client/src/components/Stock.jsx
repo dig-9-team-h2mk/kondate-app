@@ -1,24 +1,25 @@
 import React, { useState } from "react";
 import Addingredients from "./Addingredients";
 import IngredientsList from "./IngredientsList";
+import { useEffect } from "react";
 
-function Stock() {
-  const [items, setItems] = useState([]);
+function Stock({ user }) {
+  const [loginUserId, setLoginUserId] = useState("");
 
-  const handleAddItem = (ingredient, quantity) => {
-    setItems([...items, { ingredient, quantity }]);
-  };
+  useEffect(() => {
+    setLoginUserId(user.uid);
+  }, [user]);
 
   return (
     <div>
       <h1>冷蔵庫の中身を管理</h1>
       <p>冷蔵庫にある食材とグラム(g)を入力してください</p>
 
-      <Addingredients onAdd={handleAddItem} />
+      <Addingredients loginUserId={loginUserId} />
 
       <h2>登録済みの食材</h2>
 
-      <IngredientsList items={items} />
+      <IngredientsList loginUserId={loginUserId} />
     </div>
   );
 }

@@ -16,7 +16,12 @@ function createStockService(repository) {
       };
     }
   };
-  return { create, checkDuplication };
+
+  const getStockFood = async (userId) => {
+    return await repository.getByFood(userId);
+  };
+
+  return { create, checkDuplication, getStockFood };
 }
 
 module.exports = { createStockService };

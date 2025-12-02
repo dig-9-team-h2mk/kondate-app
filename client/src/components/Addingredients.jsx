@@ -1,12 +1,19 @@
 import React, { useState } from "react";
 
-function Addingredients({ onAdd }) {
+function Addingredients({ loginUserId }) {
   const [ingredient, setIngredient] = useState("");
   const [quantity, setQuantity] = useState("");
 
-  const handleAddClick = () => {
-    if (!ingredient || !quantity) return;
-    onAdd(ingredient, quantity);
+  const handleAddClick = async () => {
+    await fetch("/api/stock/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        food_name: ingredient,
+        quantity: quantity,
+        user_id: loginUserId,
+      }),
+    });
     setIngredient("");
     setQuantity("");
   };

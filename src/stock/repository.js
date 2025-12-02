@@ -13,7 +13,14 @@ function createStockRepository(knex) {
     });
   };
 
-  return { insert, getByFoodAndUser };
+  const getByFood = async (userId) => {
+    return await knex
+      .select("*")
+      .from("stock_food")
+      .where("stock_food.user_id", userId);
+  };
+
+  return { insert, getByFoodAndUser, getByFood };
 }
 
 module.exports = { createStockRepository };
