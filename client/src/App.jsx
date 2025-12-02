@@ -47,9 +47,9 @@ function App() {
     // ログアウト後の処理を記述する（例：リダイレクトなど）
   };
 
-  //きむステート
-  const [favoriteFood, setFavoriteFood] = useState("");
-  const [favoriteFoodList, setFavoriteFoodList] = useState([]);
+  //きむステート//一時的にコメントアウトしてます。
+  // const [favoriteFood, setFavoriteFood] = useState("");
+  // const [favoriteFoodList, setFavoriteFoodList] = useState([]);
 
   return (
     <div className="App">
@@ -65,7 +65,7 @@ function App() {
                 </Button>
               </div>
               {/* //ここからキムが編集 */}
-              <div>
+              {/* <div>
                 <FavoritePost
                   favoriteFood={favoriteFood}
                   setFavoriteFood={setFavoriteFood}
@@ -75,7 +75,7 @@ function App() {
                   setFavoriteFoodList={setFavoriteFoodList}
                   user={user}
                 />
-              </div>
+              </div> */}
             </>
           ) : (
             // ログインしていない場合の表示
