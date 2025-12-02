@@ -6,6 +6,7 @@ import { Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
+import Top from "./components/Top";
 import FavoriteGet from "./components/FavoriteGet";
 import FavoritePost from "./components/FavoritePost";
 
@@ -57,26 +58,12 @@ function App() {
         <div className="mt-5">
           {user ? (
             // ログインしている場合の表示
-            <>
-              <div>
-                <p>{user.email} でログイン中</p>
-                <Button variant="secondary" onClick={handleLogout}>
-                  ログアウト
-                </Button>
-              </div>
-              {/* //ここからキムが編集 */}
-              <div>
-                <FavoritePost
-                  favoriteFood={favoriteFood}
-                  setFavoriteFood={setFavoriteFood}
-                />
-                <FavoriteGet
-                  favoriteFoodList={favoriteFoodList}
-                  setFavoriteFoodList={setFavoriteFoodList}
-                  user={user}
-                />
-              </div>
-            </>
+            <div>
+              <p>{user.email} でログイン中</p>
+              <Button variant="secondary" onClick={handleLogout}>
+                ログアウト
+              </Button>
+            </div>
           ) : (
             // ログインしていない場合の表示
             <>
