@@ -4,8 +4,8 @@ function Addingredients({ loginUserId }) {
   const [ingredient, setIngredient] = useState("");
   const [quantity, setQuantity] = useState("");
 
-  const handleAddClick = () => {
-    fetch("/api/stock/", {
+  const handleAddClick = async () => {
+    await fetch("/api/stock/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
