@@ -6,6 +6,8 @@ import { Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
+import FavoriteGet from "./components/FavoriteGet";
+import FavoritePost from "./components/FavoritePost";
 
 function App() {
   // ログインしているユーザーの情報を管理するステート
@@ -51,12 +53,19 @@ function App() {
         <div className="mt-5">
           {user ? (
             // ログインしている場合の表示
-            <div>
-              <p>{user.email} でログイン中</p>
-              <Button variant="secondary" onClick={handleLogout}>
-                ログアウト
-              </Button>
-            </div>
+            <>
+              <div>
+                <p>{user.email} でログイン中</p>
+                <Button variant="secondary" onClick={handleLogout}>
+                  ログアウト
+                </Button>
+              </div>
+              {/* //ここからキムが編集 */}
+              <div>
+                <FavoritePost />
+                <FavoriteGet />
+              </div>
+            </>
           ) : (
             // ログインしていない場合の表示
             <>
