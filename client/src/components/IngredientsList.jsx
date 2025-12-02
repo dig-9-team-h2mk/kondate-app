@@ -14,7 +14,7 @@ function IngredientsList({ loginUserId }) {
     <ul style={{ listStyle: "none", paddingLeft: "0" }}>
       {items.map((item, index) => (
         <li key={index}>
-          {item.ingredient}
+          {item.food_name}
           {item.quantity}g
         </li>
       ))}
