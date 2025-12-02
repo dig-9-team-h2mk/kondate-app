@@ -16,7 +16,11 @@ function insertFavoriteService(repository) {
       };
     }
   };
-  return { create, checkDuplication };
+  const list = async (userId) => {
+    const result = await repository.getByUserId(userId);
+    return result;
+  };
+  return { create, checkDuplication, list };
 }
 
 module.exports = { insertFavoriteService };

@@ -45,7 +45,9 @@ const favoriteController = initFavoriteFood(knex);
 
 app.post("/api/stock", stockController.create);
 
-app.post("/api/favorites", favoriteController.post);
+app.post("/api/favorites", favoriteController.create);
+
+app.get("/api/favorites/:loginUserId", favoriteController.list);
 
 app.get("/api/stock/:loginUserId", stockController.list);
 

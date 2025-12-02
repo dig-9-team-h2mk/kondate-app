@@ -40,3 +40,17 @@
 .read-the-docs {
   color: #888;
 }
+
+/* きむの身勝手 */
+.favorite-box {
+  display: flex;
+  border-radius: 10px black;
+}
+.favorite-list {
+  background-color: aliceblue;
+  border-radius: 5px black;
+  display: block;
+}
+.del-button {
+  margin-left: auto;
+}

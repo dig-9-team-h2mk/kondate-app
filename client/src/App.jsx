@@ -7,6 +7,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
 import Top from "./components/Top";
+import FavoriteGet from "./components/FavoriteGet";
+import FavoritePost from "./components/FavoritePost";
 
 function App() {
   // ログインしているユーザーの情報を管理するステート
@@ -46,19 +48,37 @@ function App() {
     // ログアウト後の処理を記述する（例：リダイレクトなど）
   };
 
+  //きむステート//一時的にコメントアウトしてます。
+  // const [favoriteFood, setFavoriteFood] = useState("");
+  // const [favoriteFoodList, setFavoriteFoodList] = useState([]);
+
   return (
     <div className="App">
       <div className="container ">
         <div className="mt-5">
           {user ? (
             // ログインしている場合の表示
-            <div>
-              <p>{user.email} でログイン中</p>
-              <Button variant="secondary" onClick={handleLogout}>
-                ログアウト
-              </Button>
-              <Top />
-            </div>
+            <>
+              <div>
+                <p>{user.email} でログイン中</p>
+                <Button variant="secondary" onClick={handleLogout}>
+                  ログアウト
+                </Button>
+                <Top />
+              </div>
+              {/* //ここからキムが編集 */}
+              {/* <div>
+                <FavoritePost
+                  favoriteFood={favoriteFood}
+                  setFavoriteFood={setFavoriteFood}
+                />
+                <FavoriteGet
+                  favoriteFoodList={favoriteFoodList}
+                  setFavoriteFoodList={setFavoriteFoodList}
+                  user={user}
+                />
+              </div> */}
+            </>
           ) : (
             // ログインしていない場合の表示
             <>
