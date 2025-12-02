@@ -73,6 +73,7 @@ function App() {
                 <FavoriteGet
                   favoriteFoodList={favoriteFoodList}
                   setFavoriteFoodList={setFavoriteFoodList}
+                  user={user}
                 />
               </div>
             </>

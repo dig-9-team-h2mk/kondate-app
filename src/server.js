@@ -45,7 +45,9 @@ const favoriteController = initFavoriteFood(knex);
 
 app.post("/api/stock", stockController.post);
 
-app.post("/api/favorites", favoriteController.post);
+app.post("/api/favorites", favoriteController.create);
+
+app.get("/api/favorites/:loginUserId", favoriteController.list);
 
 app.listen(PORT, () => {
   console.log(`サーバー立ち上がりました ${PORT}`);

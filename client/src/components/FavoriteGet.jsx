@@ -1,16 +1,16 @@
 import React from "react";
 import { useEffect } from "react";
-const FavoriteGet = ({ favoriteFoodList, setFavoriteFoodList }) => {
-  //   const Listfetch = async () => {
-  //     const res = await fetch("/api/favorites");
-  //     const data = await res.json();
-  //     console.log(data);
-  //     setFavoriteFoodList(data);
-  //   };
+const FavoriteGet = ({ favoriteFoodList, setFavoriteFoodList, user }) => {
+  const Listfetch = async () => {
+    const res = await fetch(`/api/favorites/${user.uid}`);
+    const data = await res.json();
+    console.log(data);
+    setFavoriteFoodList(data);
+  };
 
-  //   useEffect(() => {
-  //     Listfetch();
-  //   }, []);
+  useEffect(() => {
+    Listfetch();
+  }, [favoriteFoodList]);
 
   return (
     <div>
@@ -19,7 +19,7 @@ const FavoriteGet = ({ favoriteFoodList, setFavoriteFoodList }) => {
         <ul>
           {favoriteFoodList.map((food, index) => (
             <div key={index}>
-              {food}
+              <p>{food.favorite_food}</p>
               <button>🗑️</button>
             </div>
           ))}
