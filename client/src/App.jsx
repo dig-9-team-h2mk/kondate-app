@@ -58,12 +58,27 @@ function App() {
         <div className="mt-5">
           {user ? (
             // ログインしている場合の表示
-            <div>
-              <p>{user.email} でログイン中</p>
-              <Button variant="secondary" onClick={handleLogout}>
-                ログアウト
-              </Button>
-            </div>
+            <>
+              <div>
+                <p>{user.email} でログイン中</p>
+                <Button variant="secondary" onClick={handleLogout}>
+                  ログアウト
+                </Button>
+                <Top />
+              </div>
+              {/* //ここからキムが編集 */}
+              {/* <div>
+                <FavoritePost
+                  favoriteFood={favoriteFood}
+                  setFavoriteFood={setFavoriteFood}
+                />
+                <FavoriteGet
+                  favoriteFoodList={favoriteFoodList}
+                  setFavoriteFoodList={setFavoriteFoodList}
+                  user={user}
+                />
+              </div> */}
+            </>
           ) : (
             // ログインしていない場合の表示
             <>
