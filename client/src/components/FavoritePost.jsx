@@ -1,7 +1,6 @@
 import React from "react";
-import { useState } from "react";
-function FavoritePost() {
-  const [favoriteFood, setFavoriteFood] = useState("");
+
+function FavoritePost({ favoriteFood, setFavoriteFood }) {
   return (
     <div>
       <h1>好きな食べ物登録</h1>

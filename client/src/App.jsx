@@ -47,6 +47,9 @@ function App() {
     // ログアウト後の処理を記述する（例：リダイレクトなど）
   };
 
+  //きむステート
+  const [favoriteFood, setFavoriteFood] = useState([]);
+
   return (
     <div className="App">
       <div className="container ">
@@ -62,8 +65,11 @@ function App() {
               </div>
               {/* //ここからキムが編集 */}
               <div>
-                <FavoritePost />
-                <FavoriteGet />
+                <FavoritePost
+                  favoriteFood={favoriteFood}
+                  setFavoriteFood={setFavoriteFood}
+                />
+                <FavoriteGet favoriteFood={favoriteFood} />
               </div>
             </>
           ) : (
