@@ -48,7 +48,8 @@ function App() {
   };
 
   //きむステート
-  const [favoriteFood, setFavoriteFood] = useState([]);
+  const [favoriteFood, setFavoriteFood] = useState("");
+  const [favoriteFoodList, setFavoriteFoodList] = useState([]);
 
   return (
     <div className="App">
@@ -69,7 +70,10 @@ function App() {
                   favoriteFood={favoriteFood}
                   setFavoriteFood={setFavoriteFood}
                 />
-                <FavoriteGet favoriteFood={favoriteFood} />
+                <FavoriteGet
+                  favoriteFoodList={favoriteFoodList}
+                  setFavoriteFoodList={setFavoriteFoodList}
+                />
               </div>
             </>
           ) : (

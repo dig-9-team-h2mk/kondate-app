@@ -1,9 +1,8 @@
 function createFavoriteController(service) {
   const post = async (req, res) => {
-    const { favorite_food: favoirte_food } = req.body;
-    const userId = "to-kun";
-
-    const result = await service.checkDuplication(userId, favoirte_food);
+    const { favorite_food, user_id } = req.body;
+    // const userId = "kimu";
+    const result = await service.checkDuplication(user_id, favorite_food);
     res.status(200).send(result);
   };
   return { post };

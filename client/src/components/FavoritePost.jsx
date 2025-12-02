@@ -1,6 +1,25 @@
 import React from "react";
 
 function FavoritePost({ favoriteFood, setFavoriteFood }) {
+  function resetForm() {
+    setFavoriteFood("");
+  }
+
+  const handleAddFavoriteFood = async () => {
+    const res = await fetch("/api/favorites", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        favorite_food: favoriteFood,
+        user_id: "kimu",
+      }),
+    });
+    const data = await res.json();
+    console.log(data);
+    resetForm();
+  };
   return (
     <div>
       <h1>好きな食べ物登録</h1>
@@ -13,7 +32,12 @@ function FavoritePost({ favoriteFood, setFavoriteFood }) {
           placeholder="例）鶏肉、トマト、オムライス"
           onChange={(e) => setFavoriteFood(e.target.value)}
         />
-        <button className="material-Name-Button">登録</button>
+        <button
+          className="material-Name-Button"
+          onClick={handleAddFavoriteFood}
+        >
+          登録
+        </button>
       </div>
     </div>
   );
