@@ -8,6 +8,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
 import FavoriteGet from "./components/FavoriteGet";
 import FavoritePost from "./components/FavoritePost";
+import Top from "./components/Top";
 
 function App() {
   // ログインしているユーザーの情報を管理するステート
@@ -77,6 +78,13 @@ function App() {
                 />
               </div> */}
             </>
+            <div>
+              <p>{user.email} でログイン中</p>
+              <Button variant="secondary" onClick={handleLogout}>
+                ログアウト
+              </Button>
+              <Top />
+            </div>
           ) : (
             // ログインしていない場合の表示
             <>
