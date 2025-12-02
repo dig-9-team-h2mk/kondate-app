@@ -49,8 +49,8 @@ function App() {
   };
 
   //きむステート//一時的にコメントアウトしてます。
-  const [favoriteFood, setFavoriteFood] = useState("");
-  const [favoriteFoodList, setFavoriteFoodList] = useState([]);
+  // const [favoriteFood, setFavoriteFood] = useState("");
+  // const [favoriteFoodList, setFavoriteFoodList] = useState([]);
 
   return (
     <div className="App">
