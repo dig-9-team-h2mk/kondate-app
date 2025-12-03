@@ -36,7 +36,7 @@ function Search() {
             <input
               className="search"
               type="text"
-              placeholder="search"
+              placeholder="材料・料理名でレシピ検索"
               value={keyword}
               onChange={(e) => setKeyword(e.target.value)}
             ></input>
