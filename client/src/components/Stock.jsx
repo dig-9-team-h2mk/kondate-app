@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Addingredients from "./Addingredients";
 import IngredientsList from "./IngredientsList";
 import { useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 function Stock({ user }) {
   const [loginUserId, setLoginUserId] = useState("");
@@ -11,6 +13,12 @@ function Stock({ user }) {
   useEffect(() => {
     setLoginUserId(user.uid);
   }, [user]);
+
+  const navigate = useNavigate();
+
+  const goToTop = () => {
+    navigate("/top");
+  };
 
   return (
     <div>
@@ -34,6 +42,7 @@ function Stock({ user }) {
         quantity={quantity}
         setQuantity={setQuantity}
       />
+      <button onClick={goToTop}>トップ画面</button>
     </div>
   );
 }

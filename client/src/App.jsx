@@ -8,11 +8,8 @@ import { Button } from "@/components/ui/button";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
 import Top from "./components/Top";
-
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Stock from "./components/Stock";
-import { SmilePlus } from "lucide-react";
-import { CirclePlus } from "lucide-react";
-import { LogOut } from "lucide-react";
 import Favorite from "./components/favorite";
 
 function App() {
@@ -65,31 +62,29 @@ function App() {
             // ログインしている場合の表示
             <>
               <div>
-                <Stock user={user} />
+                <Router>
+                  <Routes>
+                    <Route path="/top" element={<Top user={user} />} />
+                    <Route path="/stock" element={<Stock user={user} />} />
+                    <Route
+                      path="/favorites"
+                      element={
+                        <Favorite
+                          favoriteFood={favoriteFood}
+                          setFavoriteFood={setFavoriteFood}
+                          user={user}
+                          favoriteFoodList={favoriteFoodList}
+                          setFavoriteFoodList={setFavoriteFoodList}
+                        />
+                      }
+                    />
+                  </Routes>
+                </Router>
+
                 <p>{user.email} でログイン中</p>
                 <Button variant="secondary" onClick={handleLogout}>
                   ログアウト
                 </Button>
-                <Top user={user} />
-                <Button className="modalFavoriteButton" variant="outline">
-                  <SmilePlus />
-                </Button>
-                <Button className="modalStockButton" variant="outline">
-                  <CirclePlus />
-                </Button>
-                <Button className="modalLoginButton" variant="outline">
-                  <LogOut />
-                </Button>
-              </div>
-              {/* //ここからキムが編集 */}
-              <div>
-                <Favorite
-                  favoriteFood={favoriteFood}
-                  setFavoriteFood={setFavoriteFood}
-                  user={user}
-                  favoriteFoodList={favoriteFoodList}
-                  setFavoriteFoodList={setFavoriteFoodList}
-                />
               </div>
             </>
           ) : (

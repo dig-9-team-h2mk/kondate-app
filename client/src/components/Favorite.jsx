@@ -1,6 +1,7 @@
 import React from "react";
 import FavoritePost from "./FavoritePost";
 import FavoriteGet from "./FavoriteGet";
+import { useNavigate } from "react-router-dom";
 
 function Favorite({
   favoriteFood,
@@ -9,6 +10,11 @@ function Favorite({
   favoriteFoodList,
   setFavoriteFoodList,
 }) {
+  const navigate = useNavigate();
+
+  const goToTop = () => {
+    navigate("/top");
+  };
   return (
     <div>
       <FavoritePost
@@ -21,6 +27,15 @@ function Favorite({
         setFavoriteFoodList={setFavoriteFoodList}
         user={user}
       />
+
+      <button onClick={goToTop}>トップ画面</button>
+      {/* <Button
+        className="modalFavoriteButton"
+        variant="outline"
+        onClick={goToTop}
+      >
+        <SmilePlus />
+      </Button> */}
     </div>
   );
 }

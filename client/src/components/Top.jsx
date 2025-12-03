@@ -2,6 +2,11 @@ import React, { useEffect, useState } from "react";
 import Search from "./Search";
 import FavoriteTable from "./favoriteTable";
 import StockTable from "./StockTable";
+import { SmilePlus } from "lucide-react";
+import { CirclePlus } from "lucide-react";
+import { LogOut } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 function Top({ user }) {
   const [favoriteList, setFavoriteList] = useState([]);
@@ -26,11 +31,36 @@ function Top({ user }) {
       .then((data) => setStockList(data));
   }, [userId, stockList]);
 
+  const navigate = useNavigate();
+  const goToFavorites = () => {
+    navigate("/favorites");
+  };
+  const goToStock = () => {
+    navigate("/stock");
+  };
+
   return (
     <>
       <Search />
       <FavoriteTable favoriteList={favoriteList} />
       <StockTable stockList={stockList} />
+      <Button
+        className="modalFavoriteButton"
+        variant="outline"
+        onClick={goToFavorites}
+      >
+        <SmilePlus />
+      </Button>
+      <Button
+        className="modalStockButton"
+        variant="outline"
+        onClick={goToStock}
+      >
+        <CirclePlus />
+      </Button>
+      <Button className="modalLoginButton" variant="outline">
+        <LogOut />
+      </Button>
     </>
   );
 }
