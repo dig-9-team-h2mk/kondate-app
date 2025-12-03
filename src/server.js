@@ -57,7 +57,7 @@ app.post("/api/favorites", favoriteController.create);
 
 app.get("/api/favorites/:loginUserId", favoriteController.list);
 
-app.get("/api/stock/:loginUserId", stockController.list);
+app.get("/api/stock/:loginUserId", verifyAuth, stockController.list);
 
 app.get("/api/recipe/search", recipeController.search);
 

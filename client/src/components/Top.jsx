@@ -7,11 +7,12 @@ import { CirclePlus } from "lucide-react";
 import { LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../firebase";
 
 function Top({ user }) {
   const [favoriteList, setFavoriteList] = useState([]);
   const [stockList, setStockList] = useState([]);
-  const [userId, setuserId] = useState('');
+  const [userId, setuserId] = useState("");
 
   useEffect(() => {
     setuserId(user.uid);
@@ -22,14 +23,22 @@ function Top({ user }) {
     fetch(url)
       .then((res) => res.json())
       .then((data) => setFavoriteList(data));
-  }, [userId, favoriteList]);
+  }, [userId]);
 
   useEffect(() => {
-    const url = `/api/stock/${userId}`;
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => setStockList(data));
-  }, [userId, stockList]);
+    const fetchData = async () => {
+      const idToken = await auth.currentUser?.getIdToken();
+      const url = `/api/stock/${userId}`;
+      fetch(url, {
+        headers: {
+          authorization: `Bearer ${idToken}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => setStockList(data));
+    };
+    if (userId) fetchData();
+  }, [userId]);
 
   const navigate = useNavigate();
   const goToFavorites = () => {
