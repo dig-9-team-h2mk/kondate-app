@@ -53,7 +53,7 @@ const recipeController = initRecipe();
 
 app.post("/api/stock", verifyAuth, stockController.create);
 
-app.post("/api/favorites", favoriteController.create);
+app.post("/api/favorites", verifyAuth, favoriteController.create);
 
 app.get("/api/favorites/:loginUserId", verifyAuth, favoriteController.list);
 
