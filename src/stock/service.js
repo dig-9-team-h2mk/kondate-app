@@ -21,7 +21,12 @@ function createStockService(repository) {
     return await repository.getByFood(userId);
   };
 
-  return { create, checkDuplication, getStockFood };
+  const remove = async (foodId) => {
+    await repository.remove(foodId);
+    return { message: "削除しました" };
+  };
+
+  return { create, checkDuplication, getStockFood, remove };
 }
 
 module.exports = { createStockService };

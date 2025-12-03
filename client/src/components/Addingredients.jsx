@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 
-function Addingredients({ loginUserId }) {
-  const [ingredient, setIngredient] = useState("");
-  const [quantity, setQuantity] = useState("");
+function Addingredients({
+  loginUserId,
+  ingredient,
+  setIngredient,
+  quantity,
+  setQuantity,
+}) {
+  // const [ingredient, setIngredient] = useState("");
+  // const [quantity, setQuantity] = useState("");
 
   const handleAddClick = async () => {
     await fetch("/api/stock/", {

@@ -1,6 +1,6 @@
 import React from "react";
 
-function FavoritePost({ favoriteFood, setFavoriteFood }) {
+function FavoritePost({ favoriteFood, setFavoriteFood, user }) {
   function resetForm() {
     setFavoriteFood("");
   }
@@ -13,11 +13,11 @@ function FavoritePost({ favoriteFood, setFavoriteFood }) {
       },
       body: JSON.stringify({
         favorite_food: favoriteFood,
-        user_id: "kimu",
+        user_id: user.uid,
       }),
     });
     const data = await res.json();
-    console.log(data);
+    console.log("data", data);
     resetForm();
   };
   return (

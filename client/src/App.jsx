@@ -65,6 +65,7 @@ function App() {
             // ログインしている場合の表示
             <>
               <div>
+                <Stock user={user} />
                 <p>{user.email} でログイン中</p>
                 <Button variant="secondary" onClick={handleLogout}>
                   ログアウト
@@ -85,6 +86,7 @@ function App() {
                 <FavoritePost
                   favoriteFood={favoriteFood}
                   setFavoriteFood={setFavoriteFood}
+                  user={user}
                 />
                 <FavoriteGet
                   favoriteFoodList={favoriteFoodList}
