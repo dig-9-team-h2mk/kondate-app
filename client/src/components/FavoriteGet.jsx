@@ -16,13 +16,18 @@ const FavoriteGet = ({ favoriteFoodList, setFavoriteFoodList, user }) => {
   };
 
   const handleDeleteClick = async (id) => {
+    const idToken = await auth.currentUser?.getIdToken();
     await fetch(`/api/favorites/${id}`, {
       method: "DELETE",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${idToken}`,
+      },
       body: JSON.stringify({
         user_id: user.uid,
       }),
     });
+    listFetch();
   };
 
   useEffect(() => {
