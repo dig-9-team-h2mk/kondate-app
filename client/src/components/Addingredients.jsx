@@ -6,6 +6,7 @@ function Addingredients({
   setIngredient,
   quantity,
   setQuantity,
+  setItems,
 }) {
   // const [ingredient, setIngredient] = useState("");
   // const [quantity, setQuantity] = useState("");
@@ -22,6 +23,9 @@ function Addingredients({
     });
     setIngredient("");
     setQuantity("");
+    fetch(`/api/stock/${loginUserId}`)
+      .then((res) => res.json())
+      .then((data) => setItems(data));
   };
 
   return (

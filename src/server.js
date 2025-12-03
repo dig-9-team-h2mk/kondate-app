@@ -4,7 +4,7 @@ const path = require("path");
 const dotenv = require("dotenv");
 dotenv.config();
 
-// const verifyAuth = require('./auth/verifyAuth');
+const verifyAuth = require("./auth/verifyAuth");
 
 const app = express();
 const { createStockController } = require("./stock/controller");
@@ -51,7 +51,7 @@ app.get("/api/favorites/:loginUserId", favoriteController.list);
 
 app.get("/api/stock/:loginUserId", stockController.list);
 
-app.delete("/api/stock/:id", stockController.remove);
+app.delete("/api/stock/:id", verifyAuth, stockController.remove);
 
 app.listen(PORT, () => {
   console.log(`サーバー立ち上がりました ${PORT}`);

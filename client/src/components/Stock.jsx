@@ -7,6 +7,7 @@ function Stock({ user }) {
   const [loginUserId, setLoginUserId] = useState("");
   const [ingredient, setIngredient] = useState("");
   const [quantity, setQuantity] = useState("");
+  const [items, setItems] = useState([]);
 
   useEffect(() => {
     setLoginUserId(user.uid);
@@ -23,16 +24,15 @@ function Stock({ user }) {
         setIngredient={setIngredient}
         quantity={quantity}
         setQuantity={setQuantity}
+        setItems={setItems}
       />
 
       <h2>登録済みの食材</h2>
 
       <IngredientsList
         loginUserId={loginUserId}
-        ingredient={ingredient}
-        setIngredient={setIngredient}
-        quantity={quantity}
-        setQuantity={setQuantity}
+        items={items}
+        setItems={setItems}
       />
     </div>
   );

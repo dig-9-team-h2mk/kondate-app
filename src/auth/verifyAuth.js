@@ -16,6 +16,7 @@ module.exports = async (req, res, next) => {
 
     const decodedToken = await auth.verifyIdToken(token);
     req.user = decodedToken;
+    console.log("認証成功！！");
     next();
   } catch (error) {
     console.error("Auth error:", error);
