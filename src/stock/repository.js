@@ -20,7 +20,11 @@ function createStockRepository(knex) {
       .where("stock_food.user_id", userId);
   };
 
-  return { insert, getByFoodAndUser, getByFood };
+  const remove = async (foodId) => {
+    return await knex("stock_food").where({ id: foodId }).del();
+  };
+
+  return { insert, getByFoodAndUser, getByFood, remove };
 }
 
 module.exports = { createStockRepository };

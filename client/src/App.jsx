@@ -9,6 +9,7 @@ import { auth } from "./firebase";
 import Top from "./components/Top";
 import FavoriteGet from "./components/FavoriteGet";
 import FavoritePost from "./components/FavoritePost";
+import Stock from "./components/Stock";
 
 function App() {
   // ログインしているユーザーの情報を管理するステート
@@ -60,6 +61,7 @@ function App() {
             // ログインしている場合の表示
             <>
               <div>
+                <Stock user={user} />
                 <p>{user.email} でログイン中</p>
                 <Button variant="secondary" onClick={handleLogout}>
                   ログアウト

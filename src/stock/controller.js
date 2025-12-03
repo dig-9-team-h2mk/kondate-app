@@ -11,7 +11,15 @@ function createStockController(service) {
     const result = await service.getStockFood(userId);
     res.status(200).send(result);
   };
-  return { create, list };
+
+  const remove = async (req, res) => {
+    const foodId = req.params.id;
+    console.log(foodId);
+
+    const result = await service.remove(foodId);
+    res.status(200).send(result);
+  };
+  return { create, list, remove };
 }
 
 module.exports = { createStockController };
