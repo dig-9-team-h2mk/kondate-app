@@ -2,6 +2,8 @@ import React from "react";
 import FavoritePost from "./FavoritePost";
 import FavoriteGet from "./FavoriteGet";
 import { useNavigate } from "react-router-dom";
+import { House } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 function Favorite({
   favoriteFood,
@@ -28,14 +30,9 @@ function Favorite({
         user={user}
       />
 
-      <button onClick={goToTop}>トップ画面</button>
-      {/* <Button
-        className="modalFavoriteButton"
-        variant="outline"
-        onClick={goToTop}
-      >
-        <SmilePlus />
-      </Button> */}
+      <Button className="modalLoginButton" variant="outline" onClick={goToTop}>
+        <House />
+      </Button>
     </div>
   );
 }
