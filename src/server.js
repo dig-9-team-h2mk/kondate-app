@@ -4,7 +4,7 @@ const path = require('path');
 const dotenv = require('dotenv');
 dotenv.config();
 
-// const verifyAuth = require('./auth/verifyAuth');
+const verifyAuth = require("./auth/verifyAuth");
 
 const app = express();
 const { createStockController } = require('./stock/controller');
@@ -61,7 +61,7 @@ app.get('/api/stock/:loginUserId', stockController.list);
 
 app.get('/api/recipe/search', recipeController.search);
 
-app.delete("/api/stock/:id", stockController.remove);
+app.delete("/api/stock/:id", verifyAuth, stockController.remove);
 
 app.delete("/api/favorites/:id", favoriteController.remove);
 
