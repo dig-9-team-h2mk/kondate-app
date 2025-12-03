@@ -1,11 +1,67 @@
-import React from "react";
+import { useState } from 'react';
 
 function Search() {
+  const [keyword, setKeyword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [recipes, setRecipes] = useState([]);
+  const [isSearch, setIsSearch] = useState(false);
+
+  const searchRecipe = async () => {
+    setIsLoading(true);
+    setIsSearch(false);
+    setKeyword('');
+    try {
+      const res = await fetch(`/api/recipe/search?keyword=${keyword}`);
+      const resJson = await res.json();
+      setRecipes(resJson.recipes);
+      setIsSearch(true);
+      setIsLoading(false);
+    } catch (error) {
+      console.error('献立検索失敗', error.message);
+      setIsSearch(true);
+      setIsLoading(false);
+      throw error;
+    }
+  };
+
   return (
-    <div className="searchTools">
-      <input className="search" type="text" placeholder="search"></input>
-      <button>Search</button>
-    </div>
+    <>
+      {isLoading ? (
+        <h2>献立検索中...</h2>
+      ) : (
+        <>
+          <div className="searchTools">
+            <input
+              className="search"
+              type="text"
+              placeholder="search"
+              value={keyword}
+              onChange={(e) => setKeyword(e.target.value)}
+            ></input>
+            <button onClick={searchRecipe}>Search</button>
+          </div>
+          {recipes.length > 0 &&
+            isSearch &&
+            recipes.map((recipe, index) => {
+              return (
+                <div className="recipe-card" key={index}>
+                  <p>{recipe.title}</p>
+                  <a
+                    href={recipe.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    リンク
+                  </a>
+                </div>
+              );
+            })}
+          {recipes.length === 0 && isSearch && (
+            <p>献立の検索結果はありません</p>
+          )}
+        </>
+      )}
+    </>
   );
 }
 
