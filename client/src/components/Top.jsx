@@ -7,11 +7,12 @@ import { CirclePlus } from "lucide-react";
 import { LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import Recommend from "./Recommend";
 
 function Top({ user }) {
   const [favoriteList, setFavoriteList] = useState([]);
   const [stockList, setStockList] = useState([]);
-  const [userId, setuserId] = useState('');
+  const [userId, setuserId] = useState("");
 
   useEffect(() => {
     setuserId(user.uid);
@@ -41,6 +42,7 @@ function Top({ user }) {
 
   return (
     <>
+      <Recommend favoriteList={favoriteList} stockList={stockList} />
       <Search />
       <FavoriteTable favoriteList={favoriteList} />
       <StockTable stockList={stockList} />
