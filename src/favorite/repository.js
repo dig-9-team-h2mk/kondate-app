@@ -36,14 +36,14 @@ function createFavoriteRepository(knex, table = "favorite_food") {
     return favoriteFoodList;
   };
 
-  const deleteFavoriteFood = async (favoriteFoodId) => {
+  const remove = async (favoriteFoodId) => {
     const deleteFavoriteFoodId = await knex(table)
       .where({ id: favoriteFoodId })
-      .del()
-      .returning("*");
+      .del();
     return deleteFavoriteFoodId;
   };
-  return { insert, getByFavoriteFood, update, getByUserId, deleteFavoriteFood };
+
+  return { insert, getByFavoriteFood, update, getByUserId, remove };
 }
 
 module.exports = { createFavoriteRepository };

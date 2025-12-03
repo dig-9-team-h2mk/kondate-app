@@ -7,6 +7,16 @@ const FavoriteGet = ({ favoriteFoodList, setFavoriteFoodList, user }) => {
     setFavoriteFoodList(data);
   };
 
+  const handleDeleteClick = async (id) => {
+    await fetch(`/api/favorites/${id}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user_id: user.uid,
+      }),
+    });
+  };
+
   useEffect(() => {
     listFetch();
   }, [favoriteFoodList]); //eslint-disable-line
@@ -19,7 +29,12 @@ const FavoriteGet = ({ favoriteFoodList, setFavoriteFoodList, user }) => {
           {favoriteFoodList.map((food, index) => (
             <div key={index} className="favorite-box">
               <p>{food.favorite_food}</p>
-              <button className="del-button">🗑️</button>
+              <button
+                className="del-button"
+                onClick={() => handleDeleteClick(food.id)}
+              >
+                🗑️
+              </button>
             </div>
           ))}
         </ul>
