@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import Search from "./Search";
-import FavoriteTable from "./favoriteTable";
-import StockTable from "./StockTable";
+import React, { useEffect, useState } from 'react';
+import Search from './Search';
+import FavoriteTable from './FavoriteTable';
+import StockTable from './StockTable';
 
 function Top({ user }) {
   const [favoriteList, setFavoriteList] = useState([]);
   const [stockList, setStockList] = useState([]);
-  const [userId, setuserId] = useState("");
+  const [userId, setuserId] = useState('');
 
   useEffect(() => {
     setuserId(user.uid);
