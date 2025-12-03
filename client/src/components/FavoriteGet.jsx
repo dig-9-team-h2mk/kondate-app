@@ -1,8 +1,16 @@
 import React from "react";
 import { useEffect } from "react";
+import { auth } from "../firebase";
+
 const FavoriteGet = ({ favoriteFoodList, setFavoriteFoodList, user }) => {
   const listFetch = async () => {
-    const res = await fetch(`/api/favorites/${user.uid}`);
+    const idToken = await auth.currentUser?.getIdToken();
+
+    const res = await fetch(`/api/favorites/${user.uid}`, {
+      headers: {
+        authorization: `Bearer ${idToken}`,
+      },
+    });
     const data = await res.json();
     setFavoriteFoodList(data);
   };
@@ -18,8 +26,8 @@ const FavoriteGet = ({ favoriteFoodList, setFavoriteFoodList, user }) => {
   };
 
   useEffect(() => {
-    listFetch();
-  }, [favoriteFoodList]); //eslint-disable-line
+    if (user) listFetch();
+  }, [user]); //eslint-disable-line
 
   return (
     <div>

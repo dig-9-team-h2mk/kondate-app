@@ -19,10 +19,18 @@ function Top({ user }) {
   }, [user]);
 
   useEffect(() => {
-    const url = `/api/favorites/${userId}`;
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => setFavoriteList(data));
+    const fetchData = async () => {
+      const idToken = await auth.currentUser?.getIdToken();
+      const url = `/api/favorites/${userId}`;
+      fetch(url, {
+        headers: {
+          authorization: `Bearer ${idToken}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => setFavoriteList(data));
+    };
+    if (userId) fetchData();
   }, [userId]);
 
   useEffect(() => {
