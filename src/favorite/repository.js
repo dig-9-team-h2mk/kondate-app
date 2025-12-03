@@ -1,3 +1,5 @@
+const { del } = require("../../knex");
+
 function createFavoriteRepository(knex, table = "favorite_food") {
   const insert = async (userId, favoriteFood) => {
     await knex(table).insert({
@@ -33,7 +35,15 @@ function createFavoriteRepository(knex, table = "favorite_food") {
       .select("*");
     return favoriteFoodList;
   };
-  return { insert, getByFavoriteFood, update, getByUserId };
+
+  const remove = async (favoriteFoodId) => {
+    const deleteFavoriteFoodId = await knex(table)
+      .where({ id: favoriteFoodId })
+      .del();
+    return deleteFavoriteFoodId;
+  };
+
+  return { insert, getByFavoriteFood, update, getByUserId, remove };
 }
 
 module.exports = { createFavoriteRepository };

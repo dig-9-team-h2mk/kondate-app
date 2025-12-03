@@ -20,7 +20,13 @@ function insertFavoriteService(repository) {
     const result = await repository.getByUserId(userId);
     return result;
   };
-  return { create, checkDuplication, list };
+
+  const remove = async (FavoritefoodId) => {
+    await repository.remove(FavoritefoodId);
+    return { message: "削除しました" };
+  };
+
+  return { create, checkDuplication, list, remove };
 }
 
 module.exports = { insertFavoriteService };

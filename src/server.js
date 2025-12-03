@@ -63,6 +63,8 @@ app.get('/api/recipe/search', recipeController.search);
 
 app.delete("/api/stock/:id", stockController.remove);
 
+app.delete("/api/favorites/:id", favoriteController.remove);
+
 app.listen(PORT, () => {
   console.log(`サーバー立ち上がりました ${PORT}`);
 });
