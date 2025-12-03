@@ -1,4 +1,5 @@
 // import React, { useState } from "react";
+import { auth } from "../firebase";
 
 function Addingredients({
   loginUserId,
@@ -12,9 +13,13 @@ function Addingredients({
   // const [quantity, setQuantity] = useState("");
 
   const handleAddClick = async () => {
-    await fetch("/api/stock/", {
+    const idToken = await auth.currentUser?.getIdToken();
+    await fetch("/api/stock", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${idToken}`,
+      },
       body: JSON.stringify({
         food_name: ingredient,
         quantity: quantity,
