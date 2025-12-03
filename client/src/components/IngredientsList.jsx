@@ -1,5 +1,6 @@
-import { useEffect } from "react";
-import { auth } from "../firebase";
+import { useEffect } from 'react';
+import { auth } from '../firebase';
+import StockTable from './StockTable';
 
 function IngredientsList({ loginUserId, setItems, items }) {
   useEffect(() => {
@@ -11,10 +12,10 @@ function IngredientsList({ loginUserId, setItems, items }) {
   const handleDeleteClick = async (id) => {
     const idToken = await auth.currentUser?.getIdToken();
     await fetch(`/api/stock/${id}`, {
-      method: "DELETE",
+      method: 'DELETE',
       headers: {
         authorization: `Bearer ${idToken}`,
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         user_id: loginUserId,
@@ -25,19 +26,7 @@ function IngredientsList({ loginUserId, setItems, items }) {
       .then((data) => setItems(data));
   };
 
-  return (
-    <ul style={{ listStyle: "none", paddingLeft: "0" }}>
-      {items.map((item, index) => (
-        <li key={index}>
-          <span>
-            {item.food_name}
-            {item.quantity}g
-          </span>
-          <button onClick={() => handleDeleteClick(item.id)}>削除</button>
-        </li>
-      ))}
-    </ul>
-  );
+  return <StockTable stockList={items} handleDeleteClick={handleDeleteClick} />;
 }
 
 export default IngredientsList;

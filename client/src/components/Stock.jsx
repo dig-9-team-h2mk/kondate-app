@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import Addingredients from "./Addingredients";
-import IngredientsList from "./IngredientsList";
-import { useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
-import { House } from "lucide-react";
+import React, { useState } from 'react';
+import Addingredients from './Addingredients';
+import IngredientsList from './IngredientsList';
+import { useEffect } from 'react';
+import { Button } from '@/components/ui/button';
+import { useNavigate } from 'react-router-dom';
+import { House } from 'lucide-react';
 
 function Stock({ user }) {
-  const [loginUserId, setLoginUserId] = useState("");
-  const [ingredient, setIngredient] = useState("");
-  const [quantity, setQuantity] = useState("");
+  const [loginUserId, setLoginUserId] = useState('');
+  const [ingredient, setIngredient] = useState('');
+  const [quantity, setQuantity] = useState('');
   const [items, setItems] = useState([]);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ function Stock({ user }) {
   const navigate = useNavigate();
 
   const goToTop = () => {
-    navigate("/top");
+    navigate('/top');
   };
 
   return (
@@ -35,8 +35,6 @@ function Stock({ user }) {
         setQuantity={setQuantity}
         setItems={setItems}
       />
-
-      <h2>登録済みの食材</h2>
 
       <IngredientsList
         loginUserId={loginUserId}
