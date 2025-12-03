@@ -3,9 +3,17 @@ import { auth } from "../firebase";
 
 function IngredientsList({ loginUserId, setItems, items }) {
   useEffect(() => {
-    fetch(`/api/stock/${loginUserId}`)
-      .then((res) => res.json())
-      .then((data) => setItems(data));
+    const fetchData = async () => {
+      const idToken = await auth.currentUser?.getIdToken();
+      fetch(`/api/stock/${loginUserId}`, {
+        headers: {
+          authorization: `Bearer ${idToken}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => setItems(data));
+    };
+    if (loginUserId) fetchData();
   }, [loginUserId, setItems]);
 
   const handleDeleteClick = async (id) => {
@@ -20,7 +28,9 @@ function IngredientsList({ loginUserId, setItems, items }) {
         user_id: loginUserId,
       }),
     });
-    fetch(`/api/stock/${loginUserId}`)
+    fetch(`/api/stock/${loginUserId}`, {
+      headers: { authorization: `Bearer ${idToken}` },
+    })
       .then((res) => res.json())
       .then((data) => setItems(data));
   };

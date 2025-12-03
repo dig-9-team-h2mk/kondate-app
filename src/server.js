@@ -53,17 +53,17 @@ const recipeController = initRecipe();
 
 app.post("/api/stock", verifyAuth, stockController.create);
 
-app.post("/api/favorites", favoriteController.create);
+app.post("/api/favorites", verifyAuth, favoriteController.create);
 
-app.get("/api/favorites/:loginUserId", favoriteController.list);
+app.get("/api/favorites/:loginUserId", verifyAuth, favoriteController.list);
 
-app.get("/api/stock/:loginUserId", stockController.list);
+app.get("/api/stock/:loginUserId", verifyAuth, stockController.list);
 
 app.get("/api/recipe/search", recipeController.search);
 
 app.delete("/api/stock/:id", verifyAuth, stockController.remove);
 
-app.delete("/api/favorites/:id", favoriteController.remove);
+app.delete("/api/favorites/:id", verifyAuth, favoriteController.remove);
 
 app.listen(PORT, () => {
   console.log(`サーバー立ち上がりました ${PORT}`);
