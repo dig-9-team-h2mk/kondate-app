@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Search from "./Search";
-import FavoriteTable from "./favoriteTable";
+import FavoriteTable from "./FavoriteTable";
 import StockTable from "./StockTable";
 import { SmilePlus } from "lucide-react";
 import { CirclePlus } from "lucide-react";
@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 function Top({ user }) {
   const [favoriteList, setFavoriteList] = useState([]);
   const [stockList, setStockList] = useState([]);
-  const [userId, setuserId] = useState("");
+  const [userId, setuserId] = useState('');
 
   useEffect(() => {
     setuserId(user.uid);
