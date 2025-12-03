@@ -8,12 +8,12 @@ import { Button } from "@/components/ui/button";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
 import Top from "./components/Top";
-import FavoriteGet from "./components/FavoriteGet";
-import FavoritePost from "./components/FavoritePost";
+
 import Stock from "./components/Stock";
 import { SmilePlus } from "lucide-react";
 import { CirclePlus } from "lucide-react";
 import { LogOut } from "lucide-react";
+import Favorite from "./components/favorite";
 
 function App() {
   // ログインしているユーザーの情報を管理するステート
@@ -54,8 +54,8 @@ function App() {
   };
 
   //きむステート//一時的にコメントアウトしてます。
-  // const [favoriteFood, setFavoriteFood] = useState("");
-  // const [favoriteFoodList, setFavoriteFoodList] = useState([]);
+  const [favoriteFood, setFavoriteFood] = useState("");
+  const [favoriteFoodList, setFavoriteFoodList] = useState([]);
 
   return (
     <div className="App">
@@ -82,18 +82,15 @@ function App() {
                 </Button>
               </div>
               {/* //ここからキムが編集 */}
-              {/* <div>
-                <FavoritePost
+              <div>
+                <Favorite
                   favoriteFood={favoriteFood}
                   setFavoriteFood={setFavoriteFood}
                   user={user}
-                />
-                <FavoriteGet
                   favoriteFoodList={favoriteFoodList}
                   setFavoriteFoodList={setFavoriteFoodList}
-                  user={user}
                 />
-              </div> */}
+              </div>
             </>
           ) : (
             // ログインしていない場合の表示
