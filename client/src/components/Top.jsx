@@ -1,29 +1,36 @@
 import React, { useEffect, useState } from "react";
 import Search from "./Search";
-import FavotiteList from "./FavoriteList";
-import StockList from "./StockList";
+import FavoriteTable from "./favoriteTable";
+import StockTable from "./StockTable";
 
-function Top() {
+function Top({ user }) {
   const [favoriteList, setFavoriteList] = useState([]);
   const [stockList, setStockList] = useState([]);
+  const [userId, setuserId] = useState("");
 
-  // useEffect(() => {
-  //   fetch("")
-  //     .then((res) => res.json())
-  //     .then((data) => setFavoriteList(data));
-  // }, [favoriteList]);
+  useEffect(() => {
+    setuserId(user.uid);
+  }, [user]);
 
-  // useEffect(() => {
-  //   fetch("")
-  //     .then((res) => res.json())
-  //     .then((data) => setStockList(data));
-  // }, [stockList]);
+  useEffect(() => {
+    const url = `/api/favorites/${userId}`;
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => setFavoriteList(data));
+  }, [userId, favoriteList]);
+
+  useEffect(() => {
+    const url = `/api/stock/${userId}`;
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => setStockList(data));
+  }, [userId, stockList]);
 
   return (
     <>
       <Search />
-      <FavotiteList favoriteList={favoriteList} />
-      <StockList stockList={stockList} />
+      <FavoriteTable favoriteList={favoriteList} />
+      <StockTable stockList={stockList} />
     </>
   );
 }
