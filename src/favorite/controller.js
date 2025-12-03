@@ -8,8 +8,7 @@ function createFavoriteController(service) {
     res.status(200).send(result);
   };
   const list = async (req, res) => {
-    // const userId = req.params.loginUserId;
-    const userId = "kimu";
+    const userId = req.params.loginUserId;
     const result = await service.list(userId);
     res.status(200).send(result);
   };

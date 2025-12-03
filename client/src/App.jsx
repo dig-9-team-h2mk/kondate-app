@@ -71,6 +71,7 @@ function App() {
                 <FavoritePost
                   favoriteFood={favoriteFood}
                   setFavoriteFood={setFavoriteFood}
+                  user={user}
                 />
                 <FavoriteGet
                   favoriteFoodList={favoriteFoodList}

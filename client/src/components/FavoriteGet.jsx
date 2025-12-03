@@ -4,7 +4,6 @@ const FavoriteGet = ({ favoriteFoodList, setFavoriteFoodList, user }) => {
   const listFetch = async () => {
     const res = await fetch(`/api/favorites/${user.uid}`);
     const data = await res.json();
-    console.log(data);
     setFavoriteFoodList(data);
   };
 
