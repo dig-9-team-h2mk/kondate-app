@@ -19,8 +19,6 @@ const { createRecipeController } = require('./recipe/controller');
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
-console.log(path.join(__dirname, '../public'));
-
 app.use(express.static(path.join(__dirname, '../public')));
 
 // 認証が必要なAPIの書き方と、ユーザー情報の取得方法

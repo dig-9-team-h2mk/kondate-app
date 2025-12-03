@@ -26,8 +26,6 @@ function createRecipeRepository() {
         url: recipeUrls[i],
       });
     }
-    console.log('recipes', recipes);
-
     return { recipes };
   };
 

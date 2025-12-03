@@ -4,16 +4,24 @@ function Search() {
   const [keyword, setKeyword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [recipes, setRecipes] = useState([]);
+  const [isSearch, setIsSearch] = useState(false);
 
   const searchRecipe = async () => {
     setIsLoading(true);
-    console.log('検索');
+    setIsSearch(false);
     setKeyword('');
-    const res = await fetch(`/api/recipe/search?keyword=${keyword}`);
-    const resJson = await res.json();
-    console.log('recipes', resJson.recipes);
-    setRecipes(resJson.recipes);
-    setIsLoading(false);
+    try {
+      const res = await fetch(`/api/recipe/search?keyword=${keyword}`);
+      const resJson = await res.json();
+      setRecipes(resJson.recipes);
+      setIsSearch(true);
+      setIsLoading(false);
+    } catch (error) {
+      console.error('献立検索失敗', error.message);
+      setIsSearch(true);
+      setIsLoading(false);
+      throw error;
+    }
   };
 
   return (
@@ -33,6 +41,7 @@ function Search() {
             <button onClick={searchRecipe}>Search</button>
           </div>
           {recipes.length > 0 &&
+            isSearch &&
             recipes.map((recipe, index) => {
               return (
                 <div className="recipe-card" key={index}>
@@ -47,6 +56,9 @@ function Search() {
                 </div>
               );
             })}
+          {recipes.length === 0 && isSearch && (
+            <p>献立の検索結果はありません</p>
+          )}
         </>
       )}
     </>
