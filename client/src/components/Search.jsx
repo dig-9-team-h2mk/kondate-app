@@ -1,10 +1,13 @@
 import React from "react";
+import { Button } from "@/components/ui/button";
 
 function Search() {
   return (
     <div className="searchTools">
       <input className="search" type="text" placeholder="search"></input>
-      <button>Search</button>
+      <Button className="searchButton" variant="outline">
+        Search
+      </Button>
     </div>
   );
 }

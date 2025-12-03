@@ -8,6 +8,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Button } from "./ui/button";
+import { Trash2 } from "lucide-react";
 
 export default function FavoriteTable({ favoriteList }) {
   return (
@@ -16,17 +18,17 @@ export default function FavoriteTable({ favoriteList }) {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>名前</TableHead>
-            <TableHead>Action</TableHead>
+            <TableHead className="text-center">名前</TableHead>
+            <TableHead className="text-center">Action</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {favoriteList.map((row) => (
             <TableRow key={row.id}>
               <TableCell>{row.favorite_food}</TableCell>
-              <TableCell>
-                <button>×</button>
-              </TableCell>
+              <Button variant="outline">
+                <Trash2 />
+              </Button>
             </TableRow>
           ))}
         </TableBody>

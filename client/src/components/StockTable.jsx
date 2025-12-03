@@ -8,6 +8,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Button } from "./ui/button";
+import { Trash2 } from "lucide-react";
 
 export default function StockTable({ stockList }) {
   return (
@@ -16,9 +18,9 @@ export default function StockTable({ stockList }) {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>名前</TableHead>
-            <TableHead>g</TableHead>
-            <TableHead>Action</TableHead>
+            <TableHead className="text-center">名前</TableHead>
+            <TableHead className="text-center">g</TableHead>
+            <TableHead className="text-center">Action</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -27,7 +29,9 @@ export default function StockTable({ stockList }) {
               <TableCell>{row.food_name}</TableCell>
               <TableCell>{row.quantity}</TableCell>
               <TableCell>
-                <button>×</button>
+                <Button variant="outline">
+                  <Trash2 />
+                </Button>
               </TableCell>
             </TableRow>
           ))}

@@ -2,14 +2,18 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 import LoginModal from "./components/LoginModal";
 import SignUpModal from "./components/SignUpModal";
-import { Button } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import { Button } from "react-bootstrap";
+import { Button } from "@/components/ui/button";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
 import Top from "./components/Top";
 import FavoriteGet from "./components/FavoriteGet";
 import FavoritePost from "./components/FavoritePost";
 import Stock from "./components/Stock";
+import { SmilePlus } from "lucide-react";
+import { CirclePlus } from "lucide-react";
+import { LogOut } from "lucide-react";
 
 function App() {
   // ログインしているユーザーの情報を管理するステート
@@ -61,12 +65,20 @@ function App() {
             // ログインしている場合の表示
             <>
               <div>
-                <Stock user={user} />
                 <p>{user.email} でログイン中</p>
                 <Button variant="secondary" onClick={handleLogout}>
                   ログアウト
                 </Button>
                 <Top user={user} />
+                <Button className="modalFavoriteButton" variant="outline">
+                  <SmilePlus />
+                </Button>
+                <Button className="modalStockButton" variant="outline">
+                  <CirclePlus />
+                </Button>
+                <Button className="modalLoginButton" variant="outline">
+                  <LogOut />
+                </Button>
               </div>
               {/* //ここからキムが編集 */}
               {/* <div>
