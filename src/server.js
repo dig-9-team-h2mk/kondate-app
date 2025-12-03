@@ -51,6 +51,8 @@ app.get("/api/favorites/:loginUserId", favoriteController.list);
 
 app.get("/api/stock/:loginUserId", stockController.list);
 
+app.delete("/api/stock/:id", stockController.remove);
+
 app.listen(PORT, () => {
   console.log(`サーバー立ち上がりました ${PORT}`);
 });
