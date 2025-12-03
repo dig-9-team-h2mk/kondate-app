@@ -1,5 +1,6 @@
-import React from "react";
-import { useEffect } from "react";
+import { useEffect } from 'react';
+import FavoriteTable from './FavoriteTable';
+
 const FavoriteGet = ({ favoriteFoodList, setFavoriteFoodList, user }) => {
   const listFetch = async () => {
     const res = await fetch(`/api/favorites/${user.uid}`);
@@ -9,8 +10,8 @@ const FavoriteGet = ({ favoriteFoodList, setFavoriteFoodList, user }) => {
 
   const handleDeleteClick = async (id) => {
     await fetch(`/api/favorites/${id}`, {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         user_id: user.uid,
       }),
@@ -22,24 +23,10 @@ const FavoriteGet = ({ favoriteFoodList, setFavoriteFoodList, user }) => {
   }, [favoriteFoodList]); //eslint-disable-line
 
   return (
-    <div>
-      <div className="material-Name-List">
-        <h2>登録済みの好きな食材</h2>
-        <ul className="favorite-list">
-          {favoriteFoodList.map((food, index) => (
-            <div key={index} className="favorite-box">
-              <p>{food.favorite_food}</p>
-              <button
-                className="del-button"
-                onClick={() => handleDeleteClick(food.id)}
-              >
-                🗑️
-              </button>
-            </div>
-          ))}
-        </ul>
-      </div>
-    </div>
+    <FavoriteTable
+      favoriteList={favoriteFoodList}
+      handleDeleteClick={handleDeleteClick}
+    />
   );
 };
 export default FavoriteGet;
