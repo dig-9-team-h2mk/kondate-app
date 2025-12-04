@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import FavoritePost from "./FavoritePost";
 import FavoriteGet from "./FavoriteGet";
 import { useNavigate } from "react-router-dom";
@@ -14,8 +14,6 @@ function Favorite({
 }) {
   const [flag, setFlag] = useState(0);
   const navigate = useNavigate();
-
-  useEffect(() => {}, [favoriteFoodList]);
 
   const goToTop = () => {
     navigate("/");
