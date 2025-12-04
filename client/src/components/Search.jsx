@@ -1,9 +1,9 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { useState } from 'react';
+import { useState } from "react";
 
 function Search() {
-  const [keyword, setKeyword] = useState('');
+  const [keyword, setKeyword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [recipes, setRecipes] = useState([]);
   const [isSearch, setIsSearch] = useState(false);
@@ -11,7 +11,7 @@ function Search() {
   const searchRecipe = async () => {
     setIsLoading(true);
     setIsSearch(false);
-    setKeyword('');
+    setKeyword("");
     try {
       const res = await fetch(`/api/recipe/search?keyword=${keyword}`);
       const resJson = await res.json();
@@ -19,7 +19,7 @@ function Search() {
       setIsSearch(true);
       setIsLoading(false);
     } catch (error) {
-      console.error('献立検索失敗', error.message);
+      console.error("献立検索失敗", error.message);
       setIsSearch(true);
       setIsLoading(false);
       throw error;
@@ -36,11 +36,13 @@ function Search() {
             <input
               className="search"
               type="text"
-              placeholder="search"
+              placeholder="材料・料理名でレシピ検索"
               value={keyword}
               onChange={(e) => setKeyword(e.target.value)}
             ></input>
-            <button onClick={searchRecipe}>Search</button>
+            <Button onClick={searchRecipe} variant="outline">
+              Search
+            </Button>
           </div>
           {recipes.length > 0 &&
             isSearch &&
