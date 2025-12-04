@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Search from "./Search";
-import FavoriteTable from "./favoriteTable";
+import FavoriteTable from "./FavoriteTable";
 import StockTable from "./StockTable";
 import { SmilePlus } from "lucide-react";
 import { CirclePlus } from "lucide-react";
 import { LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import Recommend from "./Recommend";
+import { auth } from "../firebase";
 
 function Top({ user }) {
   const [favoriteList, setFavoriteList] = useState([]);
@@ -18,18 +20,34 @@ function Top({ user }) {
   }, [user]);
 
   useEffect(() => {
-    const url = `/api/favorites/${userId}`;
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => setFavoriteList(data));
-  }, [userId, favoriteList]);
+    const fetchData = async () => {
+      const idToken = await auth.currentUser?.getIdToken();
+      const url = `/api/favorites/${userId}`;
+      fetch(url, {
+        headers: {
+          authorization: `Bearer ${idToken}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => setFavoriteList(data));
+    };
+    if (userId) fetchData();
+  }, [userId]);
 
   useEffect(() => {
-    const url = `/api/stock/${userId}`;
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => setStockList(data));
-  }, [userId, stockList]);
+    const fetchData = async () => {
+      const idToken = await auth.currentUser?.getIdToken();
+      const url = `/api/stock/${userId}`;
+      fetch(url, {
+        headers: {
+          authorization: `Bearer ${idToken}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => setStockList(data));
+    };
+    if (userId) fetchData();
+  }, [userId]);
 
   const navigate = useNavigate();
   const goToFavorites = () => {
@@ -41,6 +59,7 @@ function Top({ user }) {
 
   return (
     <>
+      <Recommend favoriteList={favoriteList} stockList={stockList} />
       <Search />
       <FavoriteTable favoriteList={favoriteList} />
       <StockTable stockList={stockList} />

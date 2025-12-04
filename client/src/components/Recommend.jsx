@@ -1,17 +1,21 @@
-import React from "react";
-import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { Button } from "./ui/button";
 
-function Search() {
-  const [keyword, setKeyword] = useState("");
+function Recommend({ favoriteList, stockList }) {
+  // const [keyword, setKeyword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [recipes, setRecipes] = useState([]);
   const [isSearch, setIsSearch] = useState(false);
 
-  const searchRecipe = async () => {
+  const recommendRecipe = async () => {
     setIsLoading(true);
     setIsSearch(false);
-    setKeyword("");
+    console.log(favoriteList);
+    const keyword = `${favoriteList
+      .map((food) => food.favorite_food)
+      .join(" ")} ${stockList.map((stock) => stock.food_name).join(" ")}`;
+    console.log("keyword", keyword);
+
     try {
       const res = await fetch(`/api/recipe/search?keyword=${keyword}`);
       const resJson = await res.json();
@@ -25,25 +29,14 @@ function Search() {
       throw error;
     }
   };
-
   return (
     <>
+      <h1>今日の献立</h1>
+      <Button onClick={recommendRecipe}>提案</Button>
       {isLoading ? (
         <h2>献立検索中...</h2>
       ) : (
         <>
-          <div className="searchTools">
-            <input
-              className="search"
-              type="text"
-              placeholder="材料・料理名でレシピ検索"
-              value={keyword}
-              onChange={(e) => setKeyword(e.target.value)}
-            ></input>
-            <Button onClick={searchRecipe} variant="outline">
-              Search
-            </Button>
-          </div>
           {recipes.length > 0 &&
             isSearch &&
             recipes.map((recipe, index) => {
@@ -61,7 +54,7 @@ function Search() {
               );
             })}
           {recipes.length === 0 && isSearch && (
-            <p>献立の検索結果はありません</p>
+            <p>提案できる献立はありません</p>
           )}
         </>
       )}
@@ -69,4 +62,4 @@ function Search() {
   );
 }
 
-export default Search;
+export default Recommend;
