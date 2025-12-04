@@ -1,16 +1,16 @@
-import "./App.css";
-import React, { useState, useEffect } from "react";
-import LoginModal from "./components/LoginModal";
-import SignUpModal from "./components/SignUpModal";
+import './App.css';
+import React, { useState, useEffect } from 'react';
+import LoginModal from './components/LoginModal';
+import SignUpModal from './components/SignUpModal';
 // import { Button } from "react-bootstrap";
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 // import "bootstrap/dist/css/bootstrap.min.css";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "./firebase";
-import Top from "./components/Top";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Stock from "./components/Stock";
-import Favorite from "./components/favorite";
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from './firebase';
+import Top from './components/Top';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Stock from './components/Stock';
+import Favorite from './components/Favorite';
 
 function App() {
   // ログインしているユーザーの情報を管理するステート
@@ -51,7 +51,7 @@ function App() {
   };
 
   //きむステート//一時的にコメントアウトしてます。
-  const [favoriteFood, setFavoriteFood] = useState("");
+  const [favoriteFood, setFavoriteFood] = useState('');
   const [favoriteFoodList, setFavoriteFoodList] = useState([]);
 
   return (
