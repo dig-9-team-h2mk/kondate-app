@@ -65,6 +65,10 @@ app.delete("/api/stock/:id", verifyAuth, stockController.remove);
 
 app.delete("/api/favorites/:id", verifyAuth, favoriteController.remove);
 
+app.use((req, res, next) => {
+  res.sendFile(path.join(__dirname, "..", "public", "index.html"));
+});
+
 app.listen(PORT, () => {
   console.log(`サーバー立ち上がりました ${PORT}`);
 });
