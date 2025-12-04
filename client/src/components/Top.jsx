@@ -7,6 +7,7 @@ import { CirclePlus } from "lucide-react";
 import { LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import Recommend from "./Recommend";
 import { auth } from "../firebase";
 
 function Top({ user }) {
@@ -58,6 +59,7 @@ function Top({ user }) {
 
   return (
     <>
+      <Recommend favoriteList={favoriteList} stockList={stockList} />
       <Search />
       <FavoriteTable favoriteList={favoriteList} />
       <StockTable stockList={stockList} />
