@@ -15,7 +15,7 @@ const FavoriteGet = ({ favoriteFoodList, setFavoriteFoodList, user, flag }) => {
     setFavoriteFoodList(data);
   };
 
-  const handleDeleteClick = async (id) => {
+  const handleFavoriteDeleteClick = async (id) => {
     const idToken = await auth.currentUser?.getIdToken();
     await fetch(`/api/favorites/${id}`, {
       method: "DELETE",
@@ -37,7 +37,7 @@ const FavoriteGet = ({ favoriteFoodList, setFavoriteFoodList, user, flag }) => {
   return (
     <FavoriteTable
       favoriteList={favoriteFoodList}
-      handleDeleteClick={handleDeleteClick}
+      handleFavoriteDeleteClick={handleFavoriteDeleteClick}
     />
   );
 };
