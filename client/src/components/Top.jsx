@@ -13,16 +13,16 @@ import { auth } from "../firebase";
 function Top({ user }) {
   const [favoriteList, setFavoriteList] = useState([]);
   const [stockList, setStockList] = useState([]);
-  const [userId, setuserId] = useState("");
+  const [loginUserId, setLoginUserId] = useState("");
 
   useEffect(() => {
-    setuserId(user.uid);
+    setLoginUserId(user.uid);
   }, [user]);
 
   useEffect(() => {
     const fetchData = async () => {
       const idToken = await auth.currentUser?.getIdToken();
-      const url = `/api/favorites/${userId}`;
+      const url = `/api/favorites/${loginUserId}`;
       fetch(url, {
         headers: {
           authorization: `Bearer ${idToken}`,
@@ -31,13 +31,13 @@ function Top({ user }) {
         .then((res) => res.json())
         .then((data) => setFavoriteList(data));
     };
-    if (userId) fetchData();
-  }, [userId]);
+    if (loginUserId) fetchData();
+  }, [loginUserId]);
 
   useEffect(() => {
     const fetchData = async () => {
       const idToken = await auth.currentUser?.getIdToken();
-      const url = `/api/stock/${userId}`;
+      const url = `/api/stock/${loginUserId}`;
       fetch(url, {
         headers: {
           authorization: `Bearer ${idToken}`,
@@ -46,8 +46,27 @@ function Top({ user }) {
         .then((res) => res.json())
         .then((data) => setStockList(data));
     };
-    if (userId) fetchData();
-  }, [userId]);
+    if (loginUserId) fetchData();
+  }, [loginUserId]);
+
+  const handleDeleteClick = async (id) => {
+    const idToken = await auth.currentUser?.getIdToken();
+    await fetch(`/api/stock/${id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `Bearer ${idToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user_id: loginUserId,
+      }),
+    });
+    fetch(`/api/stock/${loginUserId}`, {
+      headers: { authorization: `Bearer ${idToken}` },
+    })
+      .then((res) => res.json())
+      .then((data) => setStockList(data));
+  };
 
   const navigate = useNavigate();
   const goToFavorites = () => {
@@ -62,7 +81,7 @@ function Top({ user }) {
       <Recommend favoriteList={favoriteList} stockList={stockList} />
       <Search />
       <FavoriteTable favoriteList={favoriteList} />
-      <StockTable stockList={stockList} />
+      <StockTable stockList={stockList} handleDeleteClick={handleDeleteClick} />
       <Button
         className="modalFavoriteButton"
         variant="outline"
