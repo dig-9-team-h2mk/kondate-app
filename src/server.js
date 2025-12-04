@@ -4,7 +4,7 @@ const path = require("path");
 const dotenv = require("dotenv");
 dotenv.config();
 
-// const verifyAuth = require('./auth/verifyAuth');
+const verifyAuth = require("./auth/verifyAuth");
 
 const app = express();
 const { createStockController } = require("./stock/controller");
@@ -51,19 +51,19 @@ const stockController = initStockFood(knex);
 const favoriteController = initFavoriteFood(knex);
 const recipeController = initRecipe();
 
-app.post("/api/stock", stockController.create);
+app.post("/api/stock", verifyAuth, stockController.create);
 
-app.post("/api/favorites", favoriteController.create);
+app.post("/api/favorites", verifyAuth, favoriteController.create);
 
-app.get("/api/favorites/:loginUserId", favoriteController.list);
+app.get("/api/favorites/:loginUserId", verifyAuth, favoriteController.list);
 
-app.get("/api/stock/:loginUserId", stockController.list);
+app.get("/api/stock/:loginUserId", verifyAuth, stockController.list);
 
 app.get("/api/recipe/search", recipeController.search);
 
-app.delete("/api/stock/:id", stockController.remove);
+app.delete("/api/stock/:id", verifyAuth, stockController.remove);
 
-app.delete("/api/favorites/:id", favoriteController.remove);
+app.delete("/api/favorites/:id", verifyAuth, favoriteController.remove);
 
 app.use((req, res, next) => {
   res.sendFile(path.join(__dirname, "..", "public", "index.html"));
