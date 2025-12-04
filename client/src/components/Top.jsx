@@ -76,6 +76,11 @@ function Top({ user }) {
     navigate("/stock");
   };
 
+  // ログアウト処理
+  const handleLogout = () => {
+    auth.signOut();
+    // ログアウト後の処理を記述する（例：リダイレクトなど）
+  };
   return (
     <>
       <Recommend favoriteList={favoriteList} stockList={stockList} />
@@ -96,7 +101,11 @@ function Top({ user }) {
       >
         <CirclePlus />
       </Button>
-      <Button className="modalLoginButton" variant="outline">
+      <Button
+        className="modalLoginButton"
+        variant="outline"
+        onClick={handleLogout}
+      >
         <LogOut />
       </Button>
     </>
