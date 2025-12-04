@@ -1,5 +1,7 @@
 import React from "react";
 import { auth } from "../firebase";
+import { Plus } from "lucide-react";
+import { Button } from "./ui/button";
 
 function FavoritePost({ favoriteFood, setFavoriteFood, user, setFlag }) {
   function resetForm() {
@@ -34,15 +36,16 @@ function FavoritePost({ favoriteFood, setFavoriteFood, user, setFlag }) {
         <input
           type="text"
           value={favoriteFood}
-          placeholder="例）鶏肉、トマト、オムライス"
+          placeholder="例）鶏肉、オムライス"
           onChange={(e) => setFavoriteFood(e.target.value)}
         />
-        <button
+        <Button
           className="material-Name-Button"
           onClick={handleAddFavoriteFood}
+          variant="outline"
         >
-          登録
-        </button>
+          <Plus />
+        </Button>
       </div>
     </div>
   );

@@ -35,10 +35,13 @@ const FavoriteGet = ({ favoriteFoodList, setFavoriteFoodList, user, flag }) => {
   }, [user, flag]); //eslint-disable-line
 
   return (
-    <FavoriteTable
-      favoriteList={favoriteFoodList}
-      handleFavoriteDeleteClick={handleFavoriteDeleteClick}
-    />
+    <div className="tables">
+      <FavoriteTable
+        className="favoriteTable"
+        favoriteList={favoriteFoodList}
+        handleFavoriteDeleteClick={handleFavoriteDeleteClick}
+      />
+    </div>
   );
 };
 export default FavoriteGet;
