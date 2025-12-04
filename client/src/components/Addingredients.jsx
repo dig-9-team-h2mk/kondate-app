@@ -28,7 +28,11 @@ function Addingredients({
     });
     setIngredient("");
     setQuantity("");
-    fetch(`/api/stock/${loginUserId}`)
+    fetch(`/api/stock/${loginUserId}`, {
+      headers: {
+        authorization: `Bearer ${idToken}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setItems(data));
   };

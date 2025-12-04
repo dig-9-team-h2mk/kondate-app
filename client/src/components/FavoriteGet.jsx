@@ -1,25 +1,38 @@
 import React from "react";
 import { useEffect } from "react";
+import { auth } from "../firebase";
+
 const FavoriteGet = ({ favoriteFoodList, setFavoriteFoodList, user }) => {
   const listFetch = async () => {
-    const res = await fetch(`/api/favorites/${user.uid}`);
+    const idToken = await auth.currentUser?.getIdToken();
+
+    const res = await fetch(`/api/favorites/${user.uid}`, {
+      headers: {
+        authorization: `Bearer ${idToken}`,
+      },
+    });
     const data = await res.json();
     setFavoriteFoodList(data);
   };
 
   const handleDeleteClick = async (id) => {
+    const idToken = await auth.currentUser?.getIdToken();
     await fetch(`/api/favorites/${id}`, {
       method: "DELETE",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${idToken}`,
+      },
       body: JSON.stringify({
         user_id: user.uid,
       }),
     });
+    listFetch();
   };
 
   useEffect(() => {
-    listFetch();
-  }, [favoriteFoodList]); //eslint-disable-line
+    if (user) listFetch();
+  }, [user]); //eslint-disable-line
 
   return (
     <div>
