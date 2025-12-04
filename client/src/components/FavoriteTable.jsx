@@ -16,9 +16,9 @@ export default function FavoriteTable({
   handleFavoriteDeleteClick,
 }) {
   return (
-    <>
+    <div>
       <div>好きな食べ物</div>
-      <Table>
+      <Table className="table">
         <TableHeader>
           <TableRow>
             <TableHead className="text-center">名前</TableHead>
@@ -39,6 +39,6 @@ export default function FavoriteTable({
           ))}
         </TableBody>
       </Table>
-    </>
+    </div>
   );
 }

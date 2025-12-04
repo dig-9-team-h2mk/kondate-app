@@ -3,7 +3,7 @@ import Search from "./Search";
 import FavoriteTable from "./FavoriteTable";
 import StockTable from "./StockTable";
 import { SmilePlus } from "lucide-react";
-import { CirclePlus } from "lucide-react";
+import { CircleFadingPlus } from "lucide-react";
 import { LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
@@ -104,11 +104,18 @@ function Top({ user }) {
     <>
       <Recommend favoriteList={favoriteList} stockList={stockList} />
       <Search />
-      <FavoriteTable
-        favoriteList={favoriteList}
-        handleFavoriteDeleteClick={handleFavoriteDeleteClick}
-      />
-      <StockTable stockList={stockList} handleDeleteClick={handleDeleteClick} />
+      <div className="tables">
+        <FavoriteTable
+          className="favoriteTable"
+          favoriteList={favoriteList}
+          handleFavoriteDeleteClick={handleFavoriteDeleteClick}
+        />
+        <StockTable
+          className="stockTable"
+          stockList={stockList}
+          handleDeleteClick={handleDeleteClick}
+        />
+      </div>
       <Button
         className="modalFavoriteButton"
         variant="outline"
@@ -121,7 +128,7 @@ function Top({ user }) {
         variant="outline"
         onClick={goToStock}
       >
-        <CirclePlus />
+        <CircleFadingPlus />
       </Button>
       <Button
         className="modalLoginButton"

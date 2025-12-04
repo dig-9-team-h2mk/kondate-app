@@ -7,15 +7,15 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
-import { Button } from './ui/button';
-import { Trash2 } from 'lucide-react';
+} from "@/components/ui/table";
+import { Button } from "./ui/button";
+import { Trash2 } from "lucide-react";
 
 export default function StockTable({ stockList, handleDeleteClick }) {
   return (
-    <>
+    <div>
       <div>冷蔵庫の食べ物</div>
-      <Table>
+      <Table className="table">
         <TableHeader>
           <TableRow>
             <TableHead className="text-center">名前</TableHead>
@@ -40,6 +40,6 @@ export default function StockTable({ stockList, handleDeleteClick }) {
           ))}
         </TableBody>
       </Table>
-    </>
+    </div>
   );
 }

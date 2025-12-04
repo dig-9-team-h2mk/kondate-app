@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { SearchIcon } from "lucide-react";
 
 function Search() {
   const [keyword, setKeyword] = useState("");
@@ -41,7 +42,7 @@ function Search() {
               onChange={(e) => setKeyword(e.target.value)}
             ></input>
             <Button onClick={searchRecipe} variant="outline">
-              Search
+              <SearchIcon />
             </Button>
           </div>
           {recipes.length > 0 &&

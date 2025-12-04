@@ -1,5 +1,7 @@
 // import React, { useState } from "react";
 import { auth } from "../firebase";
+import { Plus } from "lucide-react";
+import { Button } from "./ui/button";
 
 function Addingredients({
   loginUserId,
@@ -38,7 +40,7 @@ function Addingredients({
   };
 
   return (
-    <div style={{ display: "flex" }}>
+    <div className="tables" style={{ display: "flex" }}>
       <div>
         <p style={{ textAlign: "left" }}>食材名</p>
         <input
@@ -59,7 +61,9 @@ function Addingredients({
         />
       </div>
 
-      <button onClick={handleAddClick}>+ 追加する</button>
+      <Button onClick={handleAddClick} variant="outline">
+        <Plus />
+      </Button>
     </div>
   );
 }

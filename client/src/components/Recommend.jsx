@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button } from "./ui/button";
+import { Siren } from "lucide-react";
 
 function Recommend({ favoriteList, stockList }) {
   // const [keyword, setKeyword] = useState("");
@@ -32,7 +33,9 @@ function Recommend({ favoriteList, stockList }) {
   return (
     <>
       <h1>今日の献立</h1>
-      <Button onClick={recommendRecipe}>提案</Button>
+      <Button onClick={recommendRecipe}>
+        提案 <Siren />
+      </Button>
       {isLoading ? (
         <h2>献立検索中...</h2>
       ) : (
