@@ -1,5 +1,5 @@
-import React from "react";
-import { useEffect } from "react";
+import { useEffect } from 'react';
+import FavoriteTable from './FavoriteTable';
 import { auth } from "../firebase";
 
 const FavoriteGet = ({ favoriteFoodList, setFavoriteFoodList, user }) => {
@@ -35,24 +35,10 @@ const FavoriteGet = ({ favoriteFoodList, setFavoriteFoodList, user }) => {
   }, [user]); //eslint-disable-line
 
   return (
-    <div>
-      <div className="material-Name-List">
-        <h2>登録済みの好きな食材</h2>
-        <ul className="favorite-list">
-          {favoriteFoodList.map((food, index) => (
-            <div key={index} className="favorite-box">
-              <p>{food.favorite_food}</p>
-              <button
-                className="del-button"
-                onClick={() => handleDeleteClick(food.id)}
-              >
-                🗑️
-              </button>
-            </div>
-          ))}
-        </ul>
-      </div>
-    </div>
+    <FavoriteTable
+      favoriteList={favoriteFoodList}
+      handleDeleteClick={handleDeleteClick}
+    />
   );
 };
 export default FavoriteGet;
