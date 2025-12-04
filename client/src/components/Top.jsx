@@ -68,6 +68,25 @@ function Top({ user }) {
       .then((data) => setStockList(data));
   };
 
+  const handleFavoriteDeleteClick = async (id) => {
+    const idToken = await auth.currentUser?.getIdToken();
+    await fetch(`/api/favorites/${id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `Bearer ${idToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user_id: loginUserId,
+      }),
+    });
+    fetch(`/api/favorites/${loginUserId}`, {
+      headers: { authorization: `Bearer ${idToken}` },
+    })
+      .then((res) => res.json())
+      .then((data) => setFavoriteList(data));
+  };
+
   const navigate = useNavigate();
   const goToFavorites = () => {
     navigate("/favorites");
@@ -85,7 +104,10 @@ function Top({ user }) {
     <>
       <Recommend favoriteList={favoriteList} stockList={stockList} />
       <Search />
-      <FavoriteTable favoriteList={favoriteList} />
+      <FavoriteTable
+        favoriteList={favoriteList}
+        handleFavoriteDeleteClick={handleFavoriteDeleteClick}
+      />
       <StockTable stockList={stockList} handleDeleteClick={handleDeleteClick} />
       <Button
         className="modalFavoriteButton"

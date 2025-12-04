@@ -7,11 +7,14 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
-import { Button } from './ui/button';
-import { Trash2 } from 'lucide-react';
+} from "@/components/ui/table";
+import { Button } from "./ui/button";
+import { Trash2 } from "lucide-react";
 
-export default function FavoriteTable({ favoriteList, handleDeleteClick }) {
+export default function FavoriteTable({
+  favoriteList,
+  handleFavoriteDeleteClick,
+}) {
   return (
     <>
       <div>好きな食べ物</div>
@@ -28,7 +31,7 @@ export default function FavoriteTable({ favoriteList, handleDeleteClick }) {
               <TableCell>{row.favorite_food}</TableCell>
               <Button
                 variant="outline"
-                onClick={() => handleDeleteClick(row.id)}
+                onClick={() => handleFavoriteDeleteClick(row.id)}
               >
                 <Trash2 />
               </Button>
