@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import FavoritePost from "./FavoritePost";
 import FavoriteGet from "./FavoriteGet";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +12,10 @@ function Favorite({
   favoriteFoodList,
   setFavoriteFoodList,
 }) {
+  const [flag, setFlag] = useState(0);
   const navigate = useNavigate();
+
+  useEffect(() => {}, [favoriteFoodList]);
 
   const goToTop = () => {
     navigate("/");
@@ -23,11 +26,13 @@ function Favorite({
         favoriteFood={favoriteFood}
         setFavoriteFood={setFavoriteFood}
         user={user}
+        setFlag={setFlag}
       />
       <FavoriteGet
         favoriteFoodList={favoriteFoodList}
         setFavoriteFoodList={setFavoriteFoodList}
         user={user}
+        flag={flag}
       />
 
       <Button className="modalLoginButton" variant="outline" onClick={goToTop}>

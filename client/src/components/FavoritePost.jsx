@@ -1,7 +1,7 @@
 import React from "react";
 import { auth } from "../firebase";
 
-function FavoritePost({ favoriteFood, setFavoriteFood, user, fetchFavorites }) {
+function FavoritePost({ favoriteFood, setFavoriteFood, user, setFlag }) {
   function resetForm() {
     setFavoriteFood("");
   }
@@ -20,9 +20,10 @@ function FavoritePost({ favoriteFood, setFavoriteFood, user, fetchFavorites }) {
       }),
     });
     const data = await res.json();
-    console.log("data", data);
+    setFavoriteFood([...favoriteFood]);
+
     resetForm();
-    if (fetchFavorites) fetchFavorites();
+    setFlag(Date.now());
   };
   return (
     <div>

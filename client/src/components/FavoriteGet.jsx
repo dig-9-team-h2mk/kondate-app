@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
-import FavoriteTable from './FavoriteTable';
+import { useEffect } from "react";
+import FavoriteTable from "./FavoriteTable";
 import { auth } from "../firebase";
 
-const FavoriteGet = ({ favoriteFoodList, setFavoriteFoodList, user }) => {
+const FavoriteGet = ({ favoriteFoodList, setFavoriteFoodList, user, flag }) => {
   const listFetch = async () => {
     const idToken = await auth.currentUser?.getIdToken();
 
@@ -32,7 +32,7 @@ const FavoriteGet = ({ favoriteFoodList, setFavoriteFoodList, user }) => {
 
   useEffect(() => {
     if (user) listFetch();
-  }, [user]); //eslint-disable-line
+  }, [user, flag]); //eslint-disable-line
 
   return (
     <FavoriteTable
