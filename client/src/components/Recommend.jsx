@@ -42,13 +42,12 @@ function Recommend({ favoriteList, stockList }) {
             recipes.map((recipe, index) => {
               return (
                 <div className="recipe-card" key={index}>
-                  <p>{recipe.title}</p>
                   <a
                     href={recipe.url}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    リンク
+                    {recipe.title}
                   </a>
                 </div>
               );
