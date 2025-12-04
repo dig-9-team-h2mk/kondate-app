@@ -1,15 +1,18 @@
 import React from "react";
+import { auth } from "../firebase";
 
-function FavoritePost({ favoriteFood, setFavoriteFood, user }) {
+function FavoritePost({ favoriteFood, setFavoriteFood, user, fetchFavorites }) {
   function resetForm() {
     setFavoriteFood("");
   }
 
   const handleAddFavoriteFood = async () => {
+    const idToken = await auth.currentUser?.getIdToken();
     const res = await fetch("/api/favorites", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        authorization: `Bearer ${idToken}`,
       },
       body: JSON.stringify({
         favorite_food: favoriteFood,
@@ -19,6 +22,7 @@ function FavoritePost({ favoriteFood, setFavoriteFood, user }) {
     const data = await res.json();
     console.log("data", data);
     resetForm();
+    if (fetchFavorites) fetchFavorites();
   };
   return (
     <div>
