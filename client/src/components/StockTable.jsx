@@ -7,11 +7,11 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { Button } from "./ui/button";
-import { Trash2 } from "lucide-react";
+} from '@/components/ui/table';
+import { Button } from './ui/button';
+import { Trash2 } from 'lucide-react';
 
-export default function StockTable({ stockList }) {
+export default function StockTable({ stockList, handleDeleteClick }) {
   return (
     <>
       <div>冷蔵庫の食べ物</div>
@@ -29,7 +29,10 @@ export default function StockTable({ stockList }) {
               <TableCell>{row.food_name}</TableCell>
               <TableCell>{row.quantity}</TableCell>
               <TableCell>
-                <Button variant="outline">
+                <Button
+                  variant="outline"
+                  onClick={() => handleDeleteClick(row.id)}
+                >
                   <Trash2 />
                 </Button>
               </TableCell>
