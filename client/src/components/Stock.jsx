@@ -19,7 +19,7 @@ function Stock({ user }) {
   const navigate = useNavigate();
 
   const goToTop = () => {
-    navigate('/top');
+    navigate("/");
   };
 
   return (

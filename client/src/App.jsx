@@ -64,7 +64,7 @@ function App() {
               <div>
                 <Router>
                   <Routes>
-                    <Route path="/top" element={<Top user={user} />} />
+                    <Route path="/" element={<Top user={user} />} />
                     <Route path="/stock" element={<Stock user={user} />} />
                     <Route
                       path="/favorites"

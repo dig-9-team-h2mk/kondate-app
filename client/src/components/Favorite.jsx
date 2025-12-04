@@ -15,7 +15,7 @@ function Favorite({
   const navigate = useNavigate();
 
   const goToTop = () => {
-    navigate("/top");
+    navigate("/");
   };
   return (
     <div>
